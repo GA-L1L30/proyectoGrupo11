@@ -334,7 +334,7 @@ fun TextSeeAll(){
         Text(
             text="See all" ,
             color = Color(0xFF53B175),
-            fontSize = 20.sp,
+            fontSize = 16.sp,
             modifier = Modifier
                 .padding(end = 30.dp)
                 .align(Alignment.CenterVertically)

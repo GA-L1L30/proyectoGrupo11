@@ -30,7 +30,7 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             val exclusiveOffers = listOf(
                 Product(R.drawable.banana, "Organic Bananas", "7pcs, Priceg", "$4.99"),
-                Product(R.drawable.ginger, "Red Apple", "1kg, Priceg", "$4.99"),
+                Product(R.drawable.apple, "Red Apple", "1kg, Priceg", "$4.99"),
                 Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99"),
             )
 
