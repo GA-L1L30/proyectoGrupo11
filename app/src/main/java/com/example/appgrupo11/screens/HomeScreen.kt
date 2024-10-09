@@ -23,6 +23,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,18 +37,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.R
+import com.example.appgrupo11.data.Product
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 100.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Text(
-            text="Dhaka, Banassre",
+            text = "Dhaka, Banassre",
             fontSize = 18.sp,
         )
 
@@ -58,23 +64,33 @@ fun HomeScreen(){
                 .weight(1f)
                 .padding(top = 16.dp)
         ) {
-            item{
+            when (uiState) {
+                is HomeUiState.Loading -> {
+                    item { Text("Loading...") }
+                }
 
-                Items(text = "Exclusive Offer")
-                ExclusiveOffer()
+                is HomeUiState.Success -> {
+                    val successState = uiState as HomeUiState.Success
 
+                    item {
+                        Items(text = "Exclusive Offer")
+                        ExclusiveOffer(products = successState.exclusiveOffers)
+
+                    }
+
+                    item {
+                        Items(text = "Best Selling")
+                        BestSelling(products = successState.bestSelling)
+                    }
+                }
             }
-
-
-            item{
-                Items(text = "Best Selling")
-                BestSelling()
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
             }
-
         }
-        Spacer(modifier = Modifier.height(20.dp))
     }
 }
+
 
 @Composable
 fun FreshVegetablesBanner(){
@@ -148,9 +164,6 @@ fun FreshVegetablesBanner(){
             Circle()
         }
 
-
-
-
     }
 }
 
@@ -177,7 +190,7 @@ fun Items(
 }
 
 @Composable
-fun CostumCard(
+fun CustomCard(
     imageRes: Int,
     title : String,
     description: String,
@@ -268,86 +281,46 @@ fun ButtonAdd(
 }
 
 @Composable
-fun ExclusiveOffer(){
+fun ExclusiveOffer(products: List<Product>){
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 30.dp)
     ){
-
-        item{
-            CostumCard(
-                imageRes = R.drawable.banana,
-                title = "Organic bananas",
-                description = "7pcs, Priceg",
-                price ="$4.99",
-                onClick = {}
+        items(products.size){ i->
+            val product = products[i]
+            CustomCard(
+               imageRes = product.imageRes,
+                title=  product.title,
+                description = product.description,
+                price = product.price,
+                onClick={}
             )
         }
-
-        item{
-            CostumCard(
-                imageRes = R.drawable.apple,
-                title = "Red Apple",
-                description = "1kg, Priceg",
-                price ="$4.99",
-                onClick = {}
-            )
-        }
-
-        item{
-            CostumCard(
-                imageRes = R.drawable.strawberry,
-                title = "Strawberry",
-                description = "7pcs, Priceg",
-                price ="$6.99",
-                onClick = {}
-            )
-        }
-
     }
 }
 
 @Composable
-fun BestSelling() {
+fun BestSelling(products: List<Product>) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 30.dp)
     ) {
-
-        item {
-            CostumCard(
-                imageRes = R.drawable.pepper,
-                title = "Bell Pepper Red",
-                description = "7pcs, Priceg",
-                price = "$4.99",
+        items(products.size) { i ->
+            val product = products[i]
+            CustomCard(
+                imageRes = product.imageRes,
+                title = product.title,
+                description = product.description,
+                price = product.price,
                 onClick = {}
             )
-        }
-
-        item {
-            CostumCard(
-                imageRes = R.drawable.ginger,
-                title = "Ginger",
-                description = "1kg, Priceg",
-                price = "$4.99",
-                onClick = {}
-            )
-        }
-
-        item {
-            CostumCard(
-                imageRes = R.drawable.strawberry,
-                title = "Strawberry",
-                description = "7pcs, Priceg",
-                price = "$6.99",
-                onClick = {}
-            ) }
         }
     }
+}
 
 @Composable
 fun TextSeeAll(){
@@ -386,4 +359,5 @@ fun Circle(modifier: Modifier = Modifier){
         .background(Color.Gray)
     )
 }
+
 
