@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-//Anteriormente estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
+//Anteriormente este codigo estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
 @Composable
 fun CustomCard(
     imageRes: Int,
