@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import com.example.appgrupo11.screens.CategoryScreen
 import com.example.appgrupo11.screens.FindProductsScreen
 import com.example.appgrupo11.screens.HomeScreen
+import com.example.appgrupo11.screens.SearchScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 
 class MainActivity : ComponentActivity() {
@@ -27,7 +28,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     //HomeScreen()
                     //FindProductsScreen()
-                    CategoryScreen()
+                    //CategoryScreen()
+                    SearchScreen()
                 }
             }
         }

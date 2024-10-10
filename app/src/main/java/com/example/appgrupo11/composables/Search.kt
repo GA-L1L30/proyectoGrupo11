@@ -24,7 +24,7 @@ import com.example.appgrupo11.R
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Search(){
+fun Search(placeholderText: String){
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
 
@@ -34,7 +34,7 @@ fun Search(){
         onSearch = {active = false},
         active = active,
         onActiveChange = { active = it },
-        placeholder = { Text(text = "Search Store") },
+        placeholder = { Text(text = placeholderText) },
         leadingIcon = {
             Icon(imageVector = Icons.Default.Search,
                 contentDescription = "Search Icon")

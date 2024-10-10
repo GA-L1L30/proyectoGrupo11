@@ -24,7 +24,7 @@ class CategoryViewModel : ViewModel(){
                 Product(imageRes = R.drawable.applejuice, title=  "Apple Juice", description = "325ml, Price", price = "$1.50",),
                 Product(imageRes = R.drawable.orangejuice, title=  "Orange Juice", description = "2L, Price", price = "$15.99"),
                 Product(imageRes = R.drawable.redcoke, title=  "Coca Cola Can", description = "325ml, Price", price = "$4.99"),
-                Product( imageRes = R.drawable.pepsi, title=  "Pepsi Can", description = "330ml, Price", price = "$4.99",),
+                Product(imageRes = R.drawable.pepsi, title=  "Pepsi Can", description = "330ml, Price", price = "$4.99",),
             )
         )
     }
