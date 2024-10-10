@@ -43,7 +43,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 100.dp),
+           ,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

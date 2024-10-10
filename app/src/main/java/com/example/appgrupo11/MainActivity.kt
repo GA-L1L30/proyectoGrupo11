@@ -4,17 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.appgrupo11.screens.CategoryScreen
 import com.example.appgrupo11.screens.FindProductsScreen
 import com.example.appgrupo11.screens.HomeScreen
+import com.example.appgrupo11.screens.OfferAcceptedScreen
 import com.example.appgrupo11.screens.SearchScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 
@@ -29,7 +33,8 @@ class MainActivity : ComponentActivity() {
                     //HomeScreen()
                     //FindProductsScreen()
                     //CategoryScreen()
-                    SearchScreen()
+                    //SearchScreen()
+                    OfferAcceptedScreen()
                 }
             }
         }
