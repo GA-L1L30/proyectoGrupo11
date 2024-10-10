@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
             AppGrupo11Theme {
                 //VERIFICAR PROPPERTIES PARA EL FOOTER Y HEADER COMPARTIDOS
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    //HomeScreen()
-                    FindProductsScreen()
+                    HomeScreen()
+                    //FindProductsScreen()
                 }
             }
         }
