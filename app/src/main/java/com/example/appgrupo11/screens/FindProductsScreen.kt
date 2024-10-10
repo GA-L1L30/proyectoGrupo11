@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appgrupo11.R
+import com.example.appgrupo11.composables.Search
 
 
 @Composable
@@ -76,38 +77,6 @@ fun FindProductsScreen(){
         }
     }
 }
-
-@OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Composable
-fun Search(){
-    var text by remember { mutableStateOf("") }
-    var active by remember { mutableStateOf(false) }
-
-        SearchBar(
-            query = text,
-            onQueryChange = {text = it},
-            onSearch = {active = false},
-            active = active,
-            onActiveChange = { active = it },
-            placeholder = { Text(text = "Search Store")},
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Search,
-                    contentDescription = "Search Icon")},
-            trailingIcon = {
-                Image(
-                    painter = painterResource(id = R.drawable.tune),
-                    contentDescription = "Tune Icon",
-                    modifier = Modifier
-                        .size(30.dp)
-                        .padding(end = 2.dp)
-                )
-            }
-        )
-        {
-        }
-}
-
 
 @Composable
 fun CategoryCard(
