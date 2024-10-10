@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.appgrupo11.screens.FindProductsScreen
 import com.example.appgrupo11.screens.HomeScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 
@@ -23,7 +24,8 @@ class MainActivity : ComponentActivity() {
             AppGrupo11Theme {
                 //VERIFICAR PROPPERTIES PARA EL FOOTER Y HEADER COMPARTIDOS
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen()
+                    //HomeScreen()
+                    FindProductsScreen()
                 }
             }
         }
