@@ -41,14 +41,20 @@ class MainActivity : ComponentActivity() {
                 //VERIFICAR PROPPERTIES PARA EL FOOTER Y HEADER COMPARTIDOS
                 Scaffold(
                     topBar = { CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title) },
-                    bottomBar = { CustomNavigationBar(selectedNavigationItem = selectedNavigationItemIndex, onNavigationItemSelected = {selectedNavigationItemIndex = it}) },
-                    modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    bottomBar = {
+                        CustomNavigationBar(
+                            selectedNavigationItem = selectedNavigationItemIndex,
+                            onNavigationItemSelected = { selectedNavigationItemIndex = it })
+                    },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
                     Log.d(innerPadding.toString(), "innerPadding")
                     //HomeScreen()
                     //FindProductsScreen()
                     //CategoryScreen()
                     //SearchScreen()
                     OfferAcceptedScreen()
+                }
             }
         }
     }
