@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -36,11 +37,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appgrupo11.R
 
 
 @Composable
 fun FindProductsScreen(){
+    val viewModel: FindProductosViewModel = viewModel()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -63,72 +67,15 @@ fun FindProductsScreen(){
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            item {
+            items(viewModel.filteredCategories.value){
+                category ->
                 CategoryCard(
-                    imageRes = R.drawable.fruitsvegetables,
-                    title = "Frash Fruits & Vegetables",
-                    backgroundColor = Color(0x1A53B175)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.oil,
-                    title = "Cooking Oil & Ghee",
-                    backgroundColor = Color(0x1AF8A44C)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.meat,
-                    title = "Meat & Fish",
-                    backgroundColor = Color(0x40F7A593)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.bakery,
-                    title = "Bakery & Snacks",
-                    backgroundColor = Color(0x40D3B0E0)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.eggs,
-                    title = "Dairy & Eggs",
-                    backgroundColor = Color(0x40FDE598)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.beverages,
-                    title = "Beverages",
-                    backgroundColor = Color(0x40B7DFF5)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.fruitsvegetables,
-                    title = "Frash Fruits & Vegetables",
-                    backgroundColor = Color(0x26836AF6)
-                )
-            }
-
-            item {
-                CategoryCard(
-                    imageRes = R.drawable.oil,
-                    title = "Cooking Oil & Ghee",
-                    backgroundColor = Color(0x26D73B77)
-                )
+                    imageRes = category.imageRes,
+                    title = category.title ,
+                    backgroundColor = category.backgroundColor)
             }
         }
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -173,9 +120,9 @@ fun CategoryCard(
     Card(
         modifier = Modifier
             .padding(top = 3.dp)
-            .size(200.dp)
+            .size(180.dp)
             .clip(RoundedCornerShape(16.dp))
-        .border(1.dp, darkBorder, RoundedCornerShape(16.dp)),
+            .border(1.dp, darkBorder, RoundedCornerShape(16.dp)),
         colors= CardDefaults.cardColors(containerColor = backgroundColor)
     ){
         Column(
