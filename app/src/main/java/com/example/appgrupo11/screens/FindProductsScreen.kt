@@ -62,8 +62,7 @@ fun FindProductsScreen(){
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier
-                .fillMaxSize()
-                ,
+                .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {

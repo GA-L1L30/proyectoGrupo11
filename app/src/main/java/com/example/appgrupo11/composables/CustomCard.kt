@@ -108,7 +108,7 @@ fun ButtonAdd(
     onClick: () -> Unit,
 ) {
     Box(modifier = Modifier
-        .size(60.dp)
+        .size(55.dp)
         .clip(RoundedCornerShape(20.dp))
         .background(Color(0xFF53B175))
         .clickable(onClick = onClick),
