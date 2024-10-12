@@ -79,6 +79,12 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         BestSelling(products = successState.bestSelling)
                     }
                 }
+
+                else -> {
+                    item{
+                        Text("Error with data")
+                    }
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(20.dp))

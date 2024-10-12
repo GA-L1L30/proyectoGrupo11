@@ -28,22 +28,26 @@ class HomeViewModel : ViewModel() {
         viewModelState.value = HomeUiState.Loading()
 
         viewModelScope.launch {
-            val exclusiveOffers = listOf(
-                Product(R.drawable.banana, "Organic Bananas", "7pcs, Priceg", "$4.99"),
-                Product(R.drawable.apple, "Red Apple", "1kg, Priceg", "$4.99"),
-                Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99"),
-            )
+            try{
+                val exclusiveOffers = listOf(
+                    Product(R.drawable.banana, "Organic Bananas", "7pcs, Priceg", "$4.99"),
+                    Product(R.drawable.apple, "Red Apple", "1kg, Priceg", "$4.99"),
+                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99"),
+                )
 
-            val bestSelling = listOf(
-                Product(R.drawable.pepper, "Bell Pepper Red", "7pcs, Priceg", "$4.99"),
-                Product(R.drawable.ginger, "Ginger", "1kg, Priceg", "$4.99"),
-                Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99"),
-            )
+                val bestSelling = listOf(
+                    Product(R.drawable.pepper, "Bell Pepper Red", "7pcs, Priceg", "$4.99"),
+                    Product(R.drawable.ginger, "Ginger", "1kg, Priceg", "$4.99"),
+                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99"),
+                )
 
-            viewModelState.value = HomeUiState.Success(
-                exclusiveOffers = exclusiveOffers,
-                bestSelling = bestSelling
-            )
+                viewModelState.value = HomeUiState.Success(
+                    exclusiveOffers = exclusiveOffers,
+                    bestSelling = bestSelling
+                )
+            }catch (e: Exception){
+                viewModelState.value = HomeUiState.Error(message = "Error with data")
+            }
         }
     }
 }
