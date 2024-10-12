@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.appgrupo11.data.Category
 import androidx.compose.runtime.State
-import androidx.compose.ui.graphics.Color
 import com.example.appgrupo11.R
 import com.example.appgrupo11.ui.theme.AppColors
 
@@ -13,6 +12,7 @@ import com.example.appgrupo11.ui.theme.AppColors
 class FindProductosViewModel: ViewModel(){
     private var _loading = mutableStateOf(false)
     val loading: State <Boolean> get () = _loading
+
     private var _allCategories = mutableStateOf<List<Category>>(emptyList())
     val allCategories: State<List<Category>> = _allCategories
 
