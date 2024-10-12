@@ -7,16 +7,19 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.appgrupo11.composables.CustomNavigationBar
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.data.getNavigationList
+import com.example.appgrupo11.screens.FindProductsScreen
+import com.example.appgrupo11.screens.HomeScreen
+import com.example.appgrupo11.screens.OfferAcceptedScreen
+import com.example.appgrupo11.screens.SplashScreen
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,30 +27,52 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppGrupo11Theme {
+                var showSplashScreen by remember { mutableStateOf(true) }
+                var selectedNavigationItemIndex by rememberSaveable { mutableIntStateOf(0) }
 
-                var selectedNavigationItemIndex by rememberSaveable {
-                    mutableIntStateOf(0)
+
+                LaunchedEffect(Unit) {
+                    delay(2000)
+                    showSplashScreen = false
                 }
-                //VERIFICAR PROPPERTIES PARA EL FOOTER Y HEADER COMPARTIDOS
-                Scaffold(
-                    topBar = { CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title) },
-                    bottomBar = {
-                        CustomNavigationBar(
-                            selectedNavigationItem = selectedNavigationItemIndex,
-                            onNavigationItemSelected = { selectedNavigationItemIndex = it })
-                    },
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    Log.d(innerPadding.toString(), "innerPadding")
-                   //HomeScreen()
-                   //FindProductsScreen()
-                   // CategoryScreen()
-                    //SearchScreen()
-                    //OfferAcceptedScreen()
-                    CartScreen()
+
+                if (showSplashScreen) {
+                    SplashScreen()  // Pantalla de bienvenida
+                } else {
+                    MainContent(selectedNavigationItemIndex) { newIndex ->
+                        selectedNavigationItemIndex = newIndex  // Actualiza la navegación
+                    }
                 }
             }
         }
     }
-}
 
+    @Composable
+    fun MainContent(
+        selectedNavigationItemIndex: Int,
+        onNavigationItemSelected: (Int) -> Unit
+    ) {
+        Scaffold(
+            topBar = {
+                CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title)
+            },
+            bottomBar = {
+                CustomNavigationBar(
+                    selectedNavigationItem = selectedNavigationItemIndex,
+                    onNavigationItemSelected = onNavigationItemSelected
+                )
+            },
+            modifier = Modifier.fillMaxSize()
+        ) { innerPadding ->
+            Log.d(innerPadding.toString(), "innerPadding")
+
+            when (selectedNavigationItemIndex) {
+                0 -> HomeScreen()
+                1 -> FindProductsScreen()
+                2 -> OfferAcceptedScreen()
+                else -> HomeScreen()
+            }
+        }
+    }
+
+}
