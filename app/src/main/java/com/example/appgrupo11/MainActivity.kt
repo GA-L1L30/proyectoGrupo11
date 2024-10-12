@@ -5,10 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -18,14 +15,7 @@ import androidx.compose.ui.Modifier
 import com.example.appgrupo11.composables.CustomNavigationBar
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.data.getNavigationList
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.appgrupo11.screens.CategoryScreen
-import com.example.appgrupo11.screens.FindProductsScreen
-import com.example.appgrupo11.screens.HomeScreen
-import com.example.appgrupo11.screens.OfferAcceptedScreen
-import com.example.appgrupo11.screens.SearchScreen
+import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 
 class MainActivity : ComponentActivity() {
@@ -49,11 +39,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     Log.d(innerPadding.toString(), "innerPadding")
-                    //HomeScreen()
-                    //FindProductsScreen()
-                    //CategoryScreen()
+                   //HomeScreen()
+                   //FindProductsScreen()
+                   // CategoryScreen()
                     //SearchScreen()
-                    OfferAcceptedScreen()
+                    //OfferAcceptedScreen()
+                    CartScreen()
                 }
             }
         }
