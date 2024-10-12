@@ -1,5 +1,6 @@
 package com.example.appgrupo11.screens
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.appgrupo11.data.Category
@@ -9,20 +10,23 @@ import com.example.appgrupo11.R
 
 
 class FindProductosViewModel: ViewModel(){
+    private var _loading = mutableStateOf(false)
+    val loading: State <Boolean> get () = _loading
     private var _allCategories = mutableStateOf<List<Category>>(emptyList())
     val allCategories: State<List<Category>> = _allCategories
 
     private var _filteredCategories = mutableStateOf<List<Category>>(emptyList())
     val filteredCategories: State<List<Category>> get()=_filteredCategories
 
-    private var _search = mutableStateOf("")
-    val search: State<String> get() =  _search
+    private var _selectedCategory = mutableStateOf<Category?>(null)
+    val selectedCategory: MutableState<Category?> get() = _selectedCategory
 
     init{
         fetchCategories()
     }
 
     private fun fetchCategories(){
+        _loading.value = true
         val categories = listOf(
 
             Category(
@@ -75,5 +79,18 @@ class FindProductosViewModel: ViewModel(){
         )
         _allCategories.value = categories
         _filteredCategories.value = categories
+        _loading.value = false
     }
+
+    fun selectCategory(category:Category){
+        _selectedCategory.value = category
+        filterCategoryBySelected(category)
+    }
+
+    private fun filterCategoryBySelected(selected: Category){
+        _filteredCategories.value = _allCategories.value.filter{
+            category -> category.title == selected.title
+        }
+    }
+
 }
