@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.appgrupo11.ui.theme.AppColors
 
 
 @Composable
@@ -31,7 +32,7 @@ fun PrimaryButton(
         .padding(horizontal = 10.dp)
         .height(70.dp)
         .clip(RoundedCornerShape(14.dp))
-        .background(Color(0xFF53B175))
+        .background(AppColors.LightGreen)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.appgrupo11.ui.theme.AppColors
 
 
 @Composable
@@ -28,7 +29,7 @@ fun GrayButton(
         .padding(horizontal = 10.dp)
         .height(70.dp)
         .clip(RoundedCornerShape(14.dp))
-        .background(Color(0xFFC4C4C4))
+        .background(AppColors.Gray)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){
