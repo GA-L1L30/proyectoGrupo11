@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.ui.theme.SecondaryColorButton
+import com.example.appgrupo11.ui.theme.AppColors
 
 
 @Composable
@@ -33,6 +34,7 @@ fun GrayButton(
         .height(70.dp)
         .clip(RoundedCornerShape(14.dp))
         .background(SecondaryColorButton)
+        .background(AppColors.Gray)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){

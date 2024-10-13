@@ -35,6 +35,7 @@ import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appgrupo11.composables.CustomCard
+import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
@@ -79,6 +80,12 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         BestSelling(products = successState.bestSelling)
                     }
                 }
+
+                else -> {
+                    item{
+                        Text("Error with data")
+                    }
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(20.dp))
@@ -98,9 +105,9 @@ fun FreshVegetablesBanner(){
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFEEDEDB).copy(alpha = 0.8f),
+                        AppColors.Beige.copy(alpha = 0.8f),
                         Color.White,
-                        Color(0xFFEEDEDB).copy(alpha = 0.8f)
+                        AppColors.Beige.copy(alpha = 0.8f)
                     )
                 )
             )
@@ -253,7 +260,7 @@ fun SmallGreenCircle(modifier: Modifier = Modifier){
     Box(modifier = modifier
         .size(width = 20.dp, height = 8.dp)
         .clip(CircleShape)
-        .background(Color(0xFF53B175))
+        .background(AppColors.LightGreen)
     )
 }
 

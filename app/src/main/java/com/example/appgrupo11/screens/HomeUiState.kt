@@ -14,5 +14,10 @@ interface HomeUiState {
     data class Loading(
         override val isLoading: Boolean = true
     ) : HomeUiState
+
+    data class Error(
+        override val isLoading : Boolean = false,
+        val message: String
+    ): HomeUiState
 }
 
