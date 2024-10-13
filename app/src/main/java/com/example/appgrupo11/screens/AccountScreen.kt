@@ -1,4 +1,5 @@
 package com.example.appgrupo11.screens
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -83,6 +84,7 @@ fun AccountOptionItem(item: AccountOption) {
                 modifier = Modifier.size(15.dp)
             )
         },
+        modifier = Modifier.clickable {  }
     )
     HorizontalDivider()
 }
