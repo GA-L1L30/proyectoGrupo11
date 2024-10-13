@@ -44,7 +44,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-           ,
+            .padding(top = 20.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -99,7 +99,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 fun FreshVegetablesBanner(){
     Box(
         modifier = Modifier
-            .padding(top = 40.dp)
+            .padding(top = 20.dp)
             .size(width = 340.dp, height = 110.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(

@@ -40,7 +40,7 @@ fun OfferAcceptedScreen(){
                 painter = painterResource(id = R.drawable.tick),
                 contentDescription="Tick",
                 modifier = Modifier
-                    .size(280.dp),
+                    .size(230.dp),
             )
 
         Text(
@@ -57,7 +57,7 @@ fun OfferAcceptedScreen(){
             text= "Your items has been placed and is on it's way to being processed",
             fontSize = 15.sp,
             modifier = Modifier
-                .padding(top = 15.dp, bottom = 80.dp, start = 40.dp , end = 40.dp)
+                .padding(top = 10.dp, bottom = 120.dp, start = 40.dp , end = 40.dp)
                 .fillMaxWidth(),
             color = Color.Gray,
             textAlign = TextAlign.Center
@@ -69,6 +69,7 @@ fun OfferAcceptedScreen(){
         Spacer(modifier = Modifier.height(10.dp))
 
         GrayButton(text = "Back to home"){}
+
     }
 
 }
