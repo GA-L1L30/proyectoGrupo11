@@ -17,7 +17,7 @@ import com.example.appgrupo11.ui.theme.AppColors
 @Composable
 fun CustomNavigationBar(selectedNavigationItem: Int, onNavigationItemSelected: (Int) -> Unit, navigationList: List<NavigationItem> = getNavigationList()) {
 
-    NavigationBar(containerColor = Color.White, modifier = Modifier.graphicsLayer {
+    NavigationBar(containerColor = Color.White ,modifier = Modifier.graphicsLayer {
         clip = true
         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
         shadowElevation = 20f
