@@ -33,7 +33,6 @@ fun GrayButton(
         .padding(horizontal = 10.dp)
         .height(70.dp)
         .clip(RoundedCornerShape(14.dp))
-        .background(SecondaryColorButton)
         .background(AppColors.Gray)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
