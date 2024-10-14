@@ -18,7 +18,7 @@ val StarsColor = Color(0xFFF3603F)
 object AppColors{
     //composables
     val LightGreen = Color (0xFF53B175)
-    val Gray = Color(0xFFC4C4C4)
+    val Gray = Color(0xFFF2F3F2)
     val LightGray = Color(0xFFE0E0E0)
 
     //Find Products

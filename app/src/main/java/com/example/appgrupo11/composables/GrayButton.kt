@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,6 +28,7 @@ fun GrayButton(
     text : String,
     leftIcon: @Composable () -> Unit = {},
     onClick: () -> Unit,
+    textColor: Color
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -37,18 +39,26 @@ fun GrayButton(
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){
-        Row(horizontalArrangement = Arrangement.Center, modifier = Modifier
+        Row( verticalAlignment = Alignment.CenterVertically, modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)) {
-            leftIcon()
+
+
+            Box( modifier = Modifier.align(Alignment.CenterVertically)) {
+                leftIcon()
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
 
             Text(
                 text = text,
                 fontSize = 18.sp,
                 fontWeight = FontWeight(weight = 600),
-                color = Color(0xFF53B175),
+                color = textColor,
                 modifier = Modifier.padding(start = 10.dp)
             )
+
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

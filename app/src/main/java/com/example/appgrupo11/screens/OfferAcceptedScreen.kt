@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.R
 import com.example.appgrupo11.composables.GrayButton
 import com.example.appgrupo11.composables.PrimaryButton
+import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
 fun OfferAcceptedScreen(){
@@ -68,7 +69,7 @@ fun OfferAcceptedScreen(){
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        GrayButton(text = "Back to home"){}
+        GrayButton(text = "Back to home", {}, {}, textColor = Color.Black)
 
     }
 

@@ -35,6 +35,7 @@ import com.example.appgrupo11.R
 import com.example.appgrupo11.composables.GrayButton
 import com.example.appgrupo11.data.AccountOption
 import com.example.appgrupo11.data.getAccountOptions
+import com.example.appgrupo11.ui.theme.AppColors
 import com.example.appgrupo11.ui.theme.LightGrayEmail
 
 @Composable
@@ -44,7 +45,20 @@ fun AccountScreen(accountOptions: List<AccountOption> = getAccountOptions()) {
         .padding(vertical = 20.dp), verticalArrangement = Arrangement.SpaceBetween) {
         UserInformation()
         AccountOptionList(accountOptions)
-        GrayButton(text = "Log Out", leftIcon = { Icon(imageVector = Icons.AutoMirrored.Outlined.Input, tint = Color(0xFF53B175), contentDescription = null) }, onClick = {})
+        Box(modifier = Modifier.padding(10.dp)) {
+            GrayButton(
+                text = "Log Out",
+                leftIcon = {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Outlined.Input,
+                        tint = Color(0xFF53B175),
+                        contentDescription = null
+                    )
+                },
+                onClick = {},
+                textColor = AppColors.LightGreen
+            )
+        }
     }
 
 
