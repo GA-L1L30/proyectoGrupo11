@@ -17,8 +17,13 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,40 +34,50 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appgrupo11.composables.Search
 
 
 @Composable
 fun FindProductsScreen(){
     val viewModel: FindProductosViewModel = viewModel()
+    var showFiltersPopup by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 20.dp, top = 100.dp, end = 20.dp, bottom = 10.dp) ,
+            .padding(start = 20.dp, top = 20.dp, end = 20.dp, bottom = 10.dp) ,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-
-        Search("Search Store")
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(viewModel.filteredCategories.value){
-                category ->
-                CategoryCard(
-                    imageRes = category.imageRes,
-                    title = category.title ,
-                    backgroundColor = category.backgroundColor)
+        if(viewModel.loading.value) {
+            CircularProgressIndicator()
+        }else{
+            Search("Search Store"){
+                showFiltersPopup = true
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                items(viewModel.allCategories.value){
+                        category ->
+                    CategoryCard(
+                        imageRes = category.imageRes,
+                        title = category.title ,
+                        backgroundColor = category.backgroundColor)
+                }
+            }
+        }
+        if(showFiltersPopup){
+            FiltersPopUp(onDismiss = { showFiltersPopup = false })
         }
     }
 }

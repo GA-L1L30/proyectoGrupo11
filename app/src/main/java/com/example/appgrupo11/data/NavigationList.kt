@@ -1,7 +1,7 @@
 package com.example.appgrupo11.data
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
@@ -35,7 +35,7 @@ fun getNavigationList(): List<NavigationItem> {
             label = "Favourite",
             title = "Favourites",
             icon = {color ->
-                Icon(imageVector = Icons.Outlined.Favorite, contentDescription = null, tint = color) },
+                Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription = null, tint = color) },
         ),
         NavigationItem(
             label = "Account",

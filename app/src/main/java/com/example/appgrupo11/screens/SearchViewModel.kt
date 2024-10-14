@@ -20,12 +20,12 @@ class SearchViewModel : ViewModel(){
 
     private fun fetchSearchProducts() {
         val products = listOf(
-            Product(imageRes = R.drawable.redegg, title = "Egg Red", description = "4pcs, Price", price = "$1.99"),
-            Product(imageRes = R.drawable.whiteegg, title = "Egg White", description = "180g, Price", price = "$1.50"),
-            Product(imageRes = R.drawable.eggpasta, title = "Egg Pasta", description = "30gm, Price", price = "$15.99"),
-            Product(imageRes = R.drawable.eggnoddle, title = "Egg Noddle", description = "40gm", price = "$15.99" ),
-            Product(imageRes = R.drawable.mayo, title = "Egg Mayo", description = "250ml", price = "7.99"),
-            Product(imageRes = R.drawable.spaghetti, title = "Egg Spaghetti", description = "350g", price = "4.99"),
+            Product(imageRes = R.drawable.redegg, title = "Egg Red", description = "4pcs, Price", price = 1.99,1),
+            Product(imageRes = R.drawable.whiteegg, title = "Egg White", description = "180g, Price", price = 1.50,1),
+            Product(imageRes = R.drawable.eggpasta, title = "Egg Pasta", description = "30gm, Price", price = 15.99,1),
+            Product(imageRes = R.drawable.eggnoddle, title = "Egg Noddle", description = "40gm", price = 15.99,1 ),
+            Product(imageRes = R.drawable.mayo, title = "Egg Mayo", description = "250ml", price = 7.99,1),
+            Product(imageRes = R.drawable.spaghetti, title = "Egg Spaghetti", description = "350g", price = 4.99,1),
         )
         _searchProducts.value = products
     }

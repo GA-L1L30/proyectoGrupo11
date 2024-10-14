@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.appgrupo11.ui.theme.AppColors
 
 //Anteriormente este codigo estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
 @Composable
@@ -36,7 +37,7 @@ fun CustomCard(
     imageRes: Int,
     title : String,
     description: String,
-    price: String,
+    price: Double,
     onClick: () -> Unit
 ){
     Card (
@@ -44,7 +45,7 @@ fun CustomCard(
             .width(190.dp)
             .height(300.dp)
             .clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color(0xFFE0E0E0), RoundedCornerShape(16.dp))
+            .border(1.dp, AppColors.LightGray, RoundedCornerShape(16.dp))
             .shadow(8.dp, RoundedCornerShape(16.dp)),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(0.dp)
@@ -89,7 +90,7 @@ fun CustomCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = price,
+                    text = "$$price",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
@@ -110,7 +111,7 @@ fun ButtonAdd(
     Box(modifier = Modifier
         .size(55.dp)
         .clip(RoundedCornerShape(20.dp))
-        .background(Color(0xFF53B175))
+        .background(AppColors.LightGreen)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){

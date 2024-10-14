@@ -3,9 +3,7 @@ package com.example.appgrupo11.screens.loginSection
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,30 +11,67 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.appgrupo11.Auth.AuthRequest
+import com.example.appgrupo11.Auth.AuthResponse
 import com.example.appgrupo11.R
+import com.example.appgrupo11.Retrofit.RetrofitInstance
 import com.example.appgrupo11.composables.PrimaryButton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
 fun SignInScreen(
-    onLoginSuccess: (String) -> Unit, // Cambiado para recibir el token
+    onLoginSuccess: (String) -> Unit,
     onNavigateToSignUp: () -> Unit
 ) {
+    // Estados
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
 
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         color = Color.White
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.Start
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Logo y textos como antes
-            // ...
+            // Logo de la app
+            Image(
+                painter = painterResource(id = R.drawable.carrotcolored),
+                contentDescription = "Logo de la App",
+                modifier = Modifier
+                    .height(55.dp)
+                    .width(47.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Título e instrucciones
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Text(
+                    text = "Sign In",
+                    fontSize = 24.sp,
+                    color = Color.Black,
+                    style = MaterialTheme.typography.headlineLarge
+                )
+                Text(
+                    text = "Enter your email and password",
+                    color = Color.Gray,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
 
             // Campo de correo electrónico
             TextField(
@@ -57,35 +92,57 @@ fun SignInScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            if (isLoading) {
-                CircularProgressIndicator()
-            } else {
-                Button(onClick = {
-                    isLoading = true
-                    RetrofitInstance.api.login(AuthRequest(username = email, password = password)).enqueue(object : Callback<AuthResponse> {
-                        override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                            isLoading = false
-                            if (response.isSuccessful) {
-                                val token = response.body()?.token
-                                onLoginSuccess(token ?: "") // Maneja el token aquí
-                            } else {
-                                errorMessage = "Login failed. Please try again."
-                            }
-                        }
+            // Mensaje de error si existe
+            if (errorMessage.isNotEmpty()) {
+                Text(text = errorMessage, color = Color.Red)
+                Spacer(modifier = Modifier.height(8.dp))
+            }
 
-                        override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                            isLoading = false
-                            errorMessage = "Error: ${t.message}"
-                        }
-                    })
-                }) {
-                    Text("Log In")
+            // Botón de "Forgot Password" alineado a la derecha
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(onClick = { /* Acción para recuperar contraseña */ }) {
+                    Text(text = "Forgot Password?")
                 }
             }
 
-            // Mensaje de error
-            if (errorMessage.isNotEmpty()) {
-                Text(text = errorMessage, color = Color.Red)
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Botón de inicio de sesión o indicador de carga
+            if (isLoading) {
+                CircularProgressIndicator()
+            } else {
+                PrimaryButton(
+                    text = "Log In",
+                    onClick = {
+                        isLoading = true
+                        errorMessage = ""
+
+                        RetrofitInstance.api.login(
+                            AuthRequest(username = email, password = password)
+                        ).enqueue(object : Callback<AuthResponse> {
+                            override fun onResponse(
+                                call: Call<AuthResponse>,
+                                response: Response<AuthResponse>
+                            ) {
+                                isLoading = false
+                                if (response.isSuccessful) {
+                                    val token = response.body()?.token
+                                    onLoginSuccess(token ?: "")
+                                } else {
+                                    errorMessage = "Login failed. Please try again."
+                                }
+                            }
+
+                            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                                isLoading = false
+                                errorMessage = "Error: ${t.message}"
+                            }
+                        })
+                    }
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))

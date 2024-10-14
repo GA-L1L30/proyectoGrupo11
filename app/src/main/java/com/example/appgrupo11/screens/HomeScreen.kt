@@ -35,6 +35,7 @@ import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appgrupo11.composables.CustomCard
+import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
@@ -43,7 +44,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-           ,
+            .padding(top = 20.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -79,6 +80,12 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         BestSelling(products = successState.bestSelling)
                     }
                 }
+
+                else -> {
+                    item{
+                        Text("Error with data")
+                    }
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(20.dp))
@@ -92,15 +99,15 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 fun FreshVegetablesBanner(){
     Box(
         modifier = Modifier
-            .padding(top = 40.dp)
+            .padding(top = 20.dp)
             .size(width = 340.dp, height = 110.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFEEDEDB).copy(alpha = 0.8f),
+                        AppColors.Beige.copy(alpha = 0.8f),
                         Color.White,
-                        Color(0xFFEEDEDB).copy(alpha = 0.8f)
+                        AppColors.Beige.copy(alpha = 0.8f)
                     )
                 )
             )
@@ -253,7 +260,7 @@ fun SmallGreenCircle(modifier: Modifier = Modifier){
     Box(modifier = modifier
         .size(width = 20.dp, height = 8.dp)
         .clip(CircleShape)
-        .background(Color(0xFF53B175))
+        .background(AppColors.LightGreen)
     )
 }
 

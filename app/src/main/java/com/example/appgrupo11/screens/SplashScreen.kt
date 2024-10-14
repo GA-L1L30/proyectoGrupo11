@@ -11,12 +11,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.R
+import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
 fun SplashScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF53B175)
+        color = AppColors.LightGreen
     ) {
         Column(
             modifier = Modifier
