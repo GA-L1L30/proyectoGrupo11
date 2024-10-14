@@ -1,12 +1,15 @@
 package com.example.appgrupo11.screens
 
+
 import android.graphics.drawable.Icon
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.composables.PrimaryButton
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.AlertDialog
@@ -29,6 +33,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +48,25 @@ fun FiltersPopUp(onDismiss: () -> Unit){
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Filters", fontWeight = FontWeight.Bold)},
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = onDismiss) {
+                    Icon(imageVector = Icons.Filled.Close, contentDescription = "Close")
+                }
+                Box(
+                    modifier = Modifier
+                        .weight(1f),
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(text = "Filters", fontWeight = FontWeight.Bold)
+                }
+            }
+            },
         text = {
             Column(
                 modifier = Modifier
@@ -52,48 +75,48 @@ fun FiltersPopUp(onDismiss: () -> Unit){
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(
-                    text = "Categories",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.padding(bottom = 16.dp)
-                ) {
-                    items(titles.size) { index ->
-                        Item(
-                            title = titles[index],
-                            isSelected = selectedTitles[index],
-                            onCheckedChange = { selectedTitles[index] = it }
-                        )
+                    Text(
+                        text = "Categories",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    ) {
+                        items(titles.size) { index ->
+                            Item(
+                                title = titles[index],
+                                isSelected = selectedTitles[index],
+                                onCheckedChange = { selectedTitles[index] = it }
+                            )
+                        }
+                    }
+
+                    Text(
+                        text = "Brand",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(2.dp),
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    ) {
+                        items(titles2.size) { index ->
+                            Item(
+                                title = titles2[index],
+                                isSelected = selectedTitles2[index],
+                                onCheckedChange = { selectedTitles2[index] = it }
+                            )
+                        }
                     }
                 }
+            },
+            confirmButton = {
+                PrimaryButton(text = "Apply Now") {
 
-                Text(
-                    text = "Brand",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(2.dp),
-                    modifier = Modifier.padding(bottom = 10.dp)
-                ) {
-                    items(titles2.size) { index ->
-                        Item(
-                            title = titles2[index],
-                            isSelected = selectedTitles2[index],
-                            onCheckedChange = { selectedTitles2[index] = it }
-                        )
-                    }
                 }
             }
-        },
-        confirmButton = {
-            PrimaryButton(text = "Apply Now") {
-
-            }
-        }
     )
 }
 
