@@ -14,13 +14,13 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.appgrupo11.composables.CustomNavigationBar
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.data.getNavigationList
 import com.example.appgrupo11.screens.AccountScreen
 import com.example.appgrupo11.screens.FindProductsScreen
 import com.example.appgrupo11.screens.HomeScreen
-import com.example.appgrupo11.screens.OfferAcceptedScreen
 import com.example.appgrupo11.screens.SplashScreen
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
@@ -55,7 +55,8 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MainContent(
         selectedNavigationItemIndex: Int,
-        onNavigationItemSelected: (Int) -> Unit
+        onNavigationItemSelected: (Int) -> Unit,
+
     ) {
         Scaffold(
             topBar = {
@@ -74,12 +75,11 @@ class MainActivity : ComponentActivity() {
                 when (selectedNavigationItemIndex) {
                     0 -> HomeScreen()
                     1 -> FindProductsScreen()
-                    2 -> OfferAcceptedScreen()
+                    2 -> CartScreen()
                     3 -> HomeScreen()
                     4 -> AccountScreen()
                 }
             }
         }
     }
-
 }

@@ -14,12 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.composables.Search
 
 @Composable
-fun SearchScreen(){
+fun SearchScreen(navController: NavHostController) {
     val viewModel: SearchViewModel = viewModel()
+
 
     Column(
         modifier = Modifier
@@ -29,7 +31,7 @@ fun SearchScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
-        Search("Egg")
+        Search("Egg", {})
 
         Spacer(modifier = Modifier.height(12.dp))
 
