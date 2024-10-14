@@ -19,27 +19,31 @@ class CartViewModel:ViewModel() {
         // Aquí agregamos los productos iniciales al carrito
         cartItems.addAll(
             listOf(
-                Product(R.drawable.pepper, "Bell Pepper Red", "1kg, Price", "4.99"),
-                Product(R.drawable.redegg, "Egg Chicken Red", "4pcs, Price", "1.99"),
-                Product(R.drawable.banana, "Organic Bananas", "12kg, Price", "3.00"),
-                Product(R.drawable.ginger, "Ginger", "250gm, Price", "2.99")
+                Product(R.drawable.pepper, "Bell Pepper Red", "1kg, Price", "4.99",1),
+                Product(R.drawable.redegg, "Egg Chicken Red", "4pcs, Price", "1.99",1),
+                Product(R.drawable.banana, "Organic Bananas", "12kg, Price", "3.00",1),
+                Product(R.drawable.ginger, "Ginger", "250gm, Price", "2.99",1)
             )
         )
         //calculateTotal() // Calcular el total inicial
     }
 
     // Función para actualizar la cantidad de un producto
-    /*
+
     fun updateQuantity(item: Product, quantity: Int) {
-        item.quantity = quantity
-        calculateTotal() // Recalcular el total cuando cambie la cantidad
+        if(quantity >= 0){
+            val index = cartItems.indexOf(item)
+            if(index != -1){
+               // cartItems[index].quantity = quantity
+                //calculateTotal() // Recalcular el total cuando cambie la cantidad
+            }
+        }
     }
-   */
+
     // Función para recalcular el total del carrito
     /*
     private fun calculateTotal() {
         totalAmount.value = cartItems.sumOf { it.price * it.quantity }
     }
-   */
-
+     */
 }
