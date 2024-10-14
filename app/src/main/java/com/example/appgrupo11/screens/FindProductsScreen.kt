@@ -20,6 +20,10 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,12 +34,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appgrupo11.composables.Search
 
 
 @Composable
 fun FindProductsScreen(){
     val viewModel: FindProductosViewModel = viewModel()
+    var showFiltersPopup by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -48,7 +54,9 @@ fun FindProductsScreen(){
         if(viewModel.loading.value) {
             CircularProgressIndicator()
         }else{
-            Search("Search Store")
+            Search("Search Store"){
+                showFiltersPopup = true
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -67,6 +75,9 @@ fun FindProductsScreen(){
                         backgroundColor = category.backgroundColor)
                 }
             }
+        }
+        if(showFiltersPopup){
+            FiltersPopUp(onDismiss = { showFiltersPopup = false })
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.appgrupo11.composables
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -24,7 +25,7 @@ import com.example.appgrupo11.R
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Search(placeholderText: String){
+fun Search(placeholderText: String, onTrailingIconClick: () -> Unit){
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
 
@@ -46,6 +47,7 @@ fun Search(placeholderText: String){
                 modifier = Modifier
                     .size(30.dp)
                     .padding(end = 2.dp)
+                .clickable { onTrailingIconClick() }
             )
         }
     )

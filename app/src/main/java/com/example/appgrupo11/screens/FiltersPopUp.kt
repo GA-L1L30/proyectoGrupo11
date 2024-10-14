@@ -1,6 +1,8 @@
 package com.example.appgrupo11.screens
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,69 +22,79 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.composables.PrimaryButton
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TopAppBar
+import androidx.navigation.NavController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiltersPopUp(){
-
+fun FiltersPopUp(onDismiss: () -> Unit){
     val titles = listOf("Eggs", "Noodles & Pasta", "Chips & Crips", "Fast Food")
     val titles2 = listOf("Individual Callection", "CocaCola", "Ifad", "Kazi Farmas")
 
     val selectedTitles = remember { mutableStateListOf<Boolean>().apply { repeat(titles.size) { add(false) } } }
     val selectedTitles2 = remember { mutableStateListOf<Boolean>().apply { repeat(titles.size) { add(false) } } }
 
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 20.dp, top = 20.dp, end = 20.dp ),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start
-    ){
-        Text(
-            text ="Categories",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-        )
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(4.dp) ,
-            modifier = Modifier.padding(bottom = 16.dp)
-        ){
-            items(titles.size){
-                    index ->
-                Item(
-                    title = titles[index],
-                    isSelected =  selectedTitles[index],
-                    onCheckedChange = { selectedTitles[index] = it }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(text = "Filters", fontWeight = FontWeight.Bold)},
+        text = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 20.dp, top = 20.dp, end = 20.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.Start
+            ) {
+                Text(
+                    text = "Categories",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
                 )
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.padding(bottom = 16.dp)
+                ) {
+                    items(titles.size) { index ->
+                        Item(
+                            title = titles[index],
+                            isSelected = selectedTitles[index],
+                            onCheckedChange = { selectedTitles[index] = it }
+                        )
+                    }
+                }
+
+                Text(
+                    text = "Brand",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                    modifier = Modifier.padding(bottom = 10.dp)
+                ) {
+                    items(titles2.size) { index ->
+                        Item(
+                            title = titles2[index],
+                            isSelected = selectedTitles2[index],
+                            onCheckedChange = { selectedTitles2[index] = it }
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            PrimaryButton(text = "Apply Now") {
+
             }
         }
-
-        Text(
-            text ="Brand",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-        )
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(2.dp) ,
-            modifier = Modifier.padding(bottom = 10.dp)
-        ){
-            items(titles2.size){
-                    index ->
-                Item(
-                    title = titles2[index],
-                    isSelected =  selectedTitles2[index],
-                    onCheckedChange = { selectedTitles2[index] = it }
-                )
-            }
-        }
-
-
-        Column(
-            modifier = Modifier
-                .padding(top = 80.dp)
-        ){
-            PrimaryButton(text = "Apply Now", {})
-        }
-    }
+    )
 }
 
 @Composable
