@@ -97,6 +97,14 @@ dependencies {
     debugImplementation ("androidx.compose.ui:ui-tooling:1.5.0")
     debugImplementation ("androidx.compose.ui:ui-test-manifest:1.5.0")
 
+    // ViewModel support in Compose
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+// Optional for Compose tooling
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.5.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.5.0")
+
+
 
 
 }

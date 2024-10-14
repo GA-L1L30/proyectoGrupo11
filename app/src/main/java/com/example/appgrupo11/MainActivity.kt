@@ -23,6 +23,7 @@ import com.example.appgrupo11.screens.HomeScreen
 import com.example.appgrupo11.screens.OfferAcceptedScreen
 import com.example.appgrupo11.screens.SplashScreen
 import com.example.appgrupo11.screens.cart.CartScreen
+import com.example.appgrupo11.screens.favorites.FavoritesScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 import kotlinx.coroutines.delay
 
@@ -76,7 +77,7 @@ class MainActivity : ComponentActivity() {
                     1 -> FindProductsScreen()
                     //2 -> OfferAcceptedScreen()
                     2 -> CartScreen()
-                   3 -> HomeScreen()
+                   3 -> FavoritesScreen()
                     4 -> AccountScreen()
                 }
             }
