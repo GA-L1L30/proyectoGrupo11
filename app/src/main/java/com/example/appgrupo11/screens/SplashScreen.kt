@@ -16,7 +16,7 @@ import com.example.appgrupo11.R
 fun SplashScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF53B175)  // Fondo azul
+        color = Color(0xFF53B175)
     ) {
         Column(
             modifier = Modifier

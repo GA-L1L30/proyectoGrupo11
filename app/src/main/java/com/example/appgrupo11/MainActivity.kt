@@ -1,7 +1,6 @@
 package com.example.appgrupo11
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,11 +12,8 @@ import androidx.compose.ui.Modifier
 import com.example.appgrupo11.composables.CustomNavigationBar
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.data.getNavigationList
-import com.example.appgrupo11.screens.FindProductsScreen
-import com.example.appgrupo11.screens.HomeScreen
-import com.example.appgrupo11.screens.OfferAcceptedScreen
-import com.example.appgrupo11.screens.SplashScreen
-import com.example.appgrupo11.screens.cart.CartScreen
+import com.example.appgrupo11.screens.*
+import com.example.appgrupo11.screens.loginSection.SignInScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 import kotlinx.coroutines.delay
 
@@ -25,22 +21,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             AppGrupo11Theme {
                 var showSplashScreen by remember { mutableStateOf(true) }
+                var showOnBoarding by rememberSaveable { mutableStateOf(true) }
+                var isLoggedIn by rememberSaveable { mutableStateOf(false) }
                 var selectedNavigationItemIndex by rememberSaveable { mutableIntStateOf(0) }
 
-
                 LaunchedEffect(Unit) {
-                    delay(2000)
+                    delay(2000) // SplashScreen por 2 segundos
                     showSplashScreen = false
                 }
 
-                if (showSplashScreen) {
-                    SplashScreen()  // Pantalla de bienvenida
-                } else {
-                    MainContent(selectedNavigationItemIndex) { newIndex ->
-                        selectedNavigationItemIndex = newIndex  // Actualiza la navegación
+                when {
+                    showSplashScreen -> SplashScreen()
+                    showOnBoarding -> OnBoardingScreen {
+                        showOnBoarding = false
+                    }
+                    !isLoggedIn -> SignInScreen(
+                        onLoginSuccess = { isLoggedIn = true },
+                        onNavigateToSignUp = { isLoggedIn = true } // Simulamos registro exitoso
+                    )
+                    else -> MainContent(selectedNavigationItemIndex) { newIndex ->
+                        selectedNavigationItemIndex = newIndex
                     }
                 }
             }
@@ -64,8 +68,6 @@ class MainActivity : ComponentActivity() {
             },
             modifier = Modifier.fillMaxSize()
         ) { innerPadding ->
-            Log.d(innerPadding.toString(), "innerPadding")
-
             when (selectedNavigationItemIndex) {
                 0 -> HomeScreen()
                 1 -> FindProductsScreen()
@@ -74,5 +76,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
