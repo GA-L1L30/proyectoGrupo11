@@ -72,10 +72,11 @@ class MainActivity : ComponentActivity() {
 
             Column(modifier = Modifier.padding(innerPadding).background(Color.White)) {
                 when (selectedNavigationItemIndex) {
-                    0 -> HomeScreen()
+                   0 -> HomeScreen()
                     1 -> FindProductsScreen()
-                    2 -> OfferAcceptedScreen()
-                    3 -> HomeScreen()
+                    //2 -> OfferAcceptedScreen()
+                    2 -> CartScreen()
+                   3 -> HomeScreen()
                     4 -> AccountScreen()
                 }
             }
