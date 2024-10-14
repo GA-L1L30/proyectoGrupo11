@@ -37,7 +37,7 @@ fun CustomCard(
     imageRes: Int,
     title : String,
     description: String,
-    price: String,
+    price: Double,
     onClick: () -> Unit
 ){
     Card (
@@ -90,7 +90,7 @@ fun CustomCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = price,
+                    text = "$$price",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier

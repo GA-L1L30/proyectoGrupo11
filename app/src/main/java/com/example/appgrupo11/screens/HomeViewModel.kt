@@ -30,15 +30,15 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 val exclusiveOffers = listOf(
-                    Product(R.drawable.banana, "Organic Bananas", "7pcs, Priceg", "$4.99",1),
-                    Product(R.drawable.apple, "Red Apple", "1kg, Priceg", "$4.99",1),
-                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99",1),
+                    Product(R.drawable.banana, "Organic Bananas", "7pcs, Priceg", 4.99,1),
+                    Product(R.drawable.apple, "Red Apple", "1kg, Priceg", 4.99,1),
+                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", 6.99,1),
                 )
 
                 val bestSelling = listOf(
-                    Product(R.drawable.pepper, "Bell Pepper Red", "7pcs, Priceg", "$4.99",1),
-                    Product(R.drawable.ginger, "Ginger", "1kg, Priceg", "$4.99",1),
-                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", "$6.99",1),
+                    Product(R.drawable.pepper, "Bell Pepper Red", "7pcs, Priceg", 4.99,1),
+                    Product(R.drawable.ginger, "Ginger", "1kg, Priceg", 4.99,1),
+                    Product(R.drawable.strawberry, "Strawberry", "7pcs, Priceg", 6.99,1),
                 )
 
                 viewModelState.value = HomeUiState.Success(

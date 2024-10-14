@@ -19,10 +19,10 @@ class CartViewModel:ViewModel() {
         // Aquí agregamos los productos iniciales al carrito
         cartItems.addAll(
             listOf(
-                Product(R.drawable.pepper, "Bell Pepper Red", "1kg, Price", "4.99",1),
-                Product(R.drawable.redegg, "Egg Chicken Red", "4pcs, Price", "1.99",1),
-                Product(R.drawable.banana, "Organic Bananas", "12kg, Price", "3.00",1),
-                Product(R.drawable.ginger, "Ginger", "250gm, Price", "2.99",1)
+                Product(R.drawable.pepper, "Bell Pepper Red", "1kg, Price", 4.99,1),
+                Product(R.drawable.redegg, "Egg Chicken Red", "4pcs, Price", 1.99,1),
+                Product(R.drawable.banana, "Organic Bananas", "12kg, Price", 3.00,1),
+                Product(R.drawable.ginger, "Ginger", "250gm, Price", 2.99,1)
             )
         )
         //calculateTotal() // Calcular el total inicial
