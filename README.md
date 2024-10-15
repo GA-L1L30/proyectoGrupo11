@@ -1,3 +1,9 @@
+### Datos para el login:
+username: mor_2314
+password: 83r5^_
+
+---
+
 ### Qué tipo de arquitectura usaron y por qué? ¿Podría mejorarla?
 
 Usamos el tipo de arquitectura MVVM ya que
