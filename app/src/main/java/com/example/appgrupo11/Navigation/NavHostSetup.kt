@@ -1,5 +1,6 @@
 package com.example.appgrupo11.Navigation
 
+import LocationScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,7 +19,7 @@ import com.example.appgrupo11.data.getNavigationList
 import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.screens.favorites.FavoritesScreen
-import com.example.appgrupo11.screens.loginSection.LocationScreen
+
 import com.example.appgrupo11.screens.loginSection.SignInScreen
 import com.example.appgrupo11.screens.loginSection.SignUpScreen
 
