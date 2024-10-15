@@ -51,7 +51,7 @@ fun SearchScreen(navController: NavHostController) {
                     title = product.title,
                     description = product.description,
                     price = product.price,
-                    onClick = {}
+                    navController = navController
                 )
             }
         }

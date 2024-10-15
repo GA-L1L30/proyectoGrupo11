@@ -27,9 +27,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForwardIos
 import androidx.compose.material3.Icon
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
+import com.example.appgrupo11.composables.ErrorDialog
 
 @Composable
-fun FavoritesScreen() {
+fun FavoritesScreen(navController: NavController) {
+    var showDialog by remember { mutableStateOf(false) }
     val favoritesViewModel: FavoritesViewModel = viewModel()
     // Obtener la lista de productos desde el viewmodel
     val products = favoritesViewModel.favoritesItems
@@ -51,9 +58,11 @@ fun FavoritesScreen() {
 
         }
         //Boton para ir a checkout
-        PrimaryButton("Add All To Cart", onClick = { /*Accion de ir al Carrito*/ }
+        PrimaryButton("Add All To Cart", onClick = { showDialog = true }
         )
-
+        if(showDialog) {
+            ErrorDialog(onDismiss = { showDialog = false }, navController = navController)
+        }
 
     }
 }

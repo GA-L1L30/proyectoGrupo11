@@ -1,9 +1,8 @@
 package com.example.appgrupo11.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,11 +33,12 @@ import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = viewModel(), navController: NavController) {
     val uiState by viewModel.uiState.collectAsState()
 
     Column(
@@ -71,13 +71,13 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 
                     item {
                         Items(text = "Exclusive Offer")
-                        ExclusiveOffer(products = successState.exclusiveOffers)
+                        ExclusiveOffer(products = successState.exclusiveOffers, navController)
 
                     }
 
                     item {
                         Items(text = "Best Selling")
-                        BestSelling(products = successState.bestSelling)
+                        BestSelling(products = successState.bestSelling, navController)
                     }
                 }
 
@@ -194,7 +194,8 @@ fun Items(
 
 
 @Composable
-fun ExclusiveOffer(products: List<Product>){
+fun ExclusiveOffer(products: List<Product>, navController: NavController){
+    Log.d("testGonza", navController.toString())
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = Modifier
@@ -205,17 +206,17 @@ fun ExclusiveOffer(products: List<Product>){
             val product = products[i]
             CustomCard(
                imageRes = product.imageRes,
-                title=  product.title,
+                title =  product.title,
                 description = product.description,
                 price = product.price,
-                onClick={}
+                navController
             )
         }
     }
 }
 
 @Composable
-fun BestSelling(products: List<Product>) {
+fun BestSelling(products: List<Product>, navController: NavController) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = Modifier
@@ -229,7 +230,7 @@ fun BestSelling(products: List<Product>) {
                 title = product.title,
                 description = product.description,
                 price = product.price,
-                onClick = {}
+                navController = navController
             )
         }
     }

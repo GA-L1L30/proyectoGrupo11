@@ -31,12 +31,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.navigation.NavController
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
 
 
 @Composable
-fun CartScreen() {
+fun CartScreen(navController: NavController) {
     val cartViewModel: CartViewModel = viewModel()
     val totalAmount by cartViewModel.totalAmount
 
@@ -61,7 +62,7 @@ fun CartScreen() {
 
         //Boton para ir a checkout
         PrimaryButton ("\"Go to Checkout  \$${String.format("%.2f", totalAmount)}\""
-            ,onClick = { /*Accion de ir a Checkot*/ })
+            ,onClick = { navController.navigate("orderAccepted") })
     }
 
 
