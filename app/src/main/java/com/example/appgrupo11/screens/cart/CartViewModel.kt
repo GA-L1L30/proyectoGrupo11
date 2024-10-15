@@ -27,6 +27,24 @@ class CartViewModel:ViewModel() {
         calculateTotal() // Calcular el total inicial
     }
 
+    //Metodo para aumentar la cantidad de un producto
+    fun onIncrease(item: Product){
+        val index = cartItems.indexOf(item)
+        if(index != -1){
+            cartItems[index].quantity += 1
+            calculateTotal()
+        }
+    }
+
+    //Metodo para aumentar la cantidad de un producto
+    fun onDecrease(item: Product){
+        val index = cartItems.indexOf(item)
+        if(index != -1 && cartItems[index].quantity > 0){
+            cartItems[index].quantity -= 1
+            calculateTotal()
+        }
+    }
+
     // Función para actualizar la cantidad de un producto
 
     fun updateQuantity(item: Product, quantity: Int) {
@@ -40,7 +58,6 @@ class CartViewModel:ViewModel() {
     }
 
     // Función para recalcular el total del carrito
-
     private fun calculateTotal() {
         totalAmount.value = cartItems.sumOf { it.price * it.quantity }
     }

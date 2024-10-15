@@ -68,7 +68,7 @@ fun CartScreen() {
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
-                .padding(top = 16.dp)
+                .padding(top = 1.dp)
         ){
             
             items(cartViewModel.cartItems.size){ index ->
@@ -76,12 +76,11 @@ fun CartScreen() {
                 HorizontalDivider()
                 Spacer(modifier = Modifier.height(10.dp))
                 CartItemRow(item = item, cartViewModel = cartViewModel)
-                //Divider(modifier = Modifier.padding(vertical = 8.dp))
             }
         }
 
         //Boton para ir a checkout
-        PrimaryButton(text = "Go to Checkout $$totalAmount", onClick = {
+        PrimaryButton(text = "Go to Checkout $${"%.2f".format(totalAmount)}", onClick = {
                 coroutineScope.launch {
                     showBottomSheet = true
                     sheetState.show()
@@ -114,7 +113,7 @@ fun Divider(modifier: Modifier) {
         modifier = Modifier
             .fillMaxWidth()
             .height(1.dp)
-            .padding(vertical = 4.dp)
+            .padding(vertical = 1.dp)
             .background(Color.Gray)
     )
 
@@ -132,7 +131,8 @@ fun QuantitySelector(
         verticalAlignment =  androidx.compose.ui.Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ){
-        IconButton(onClick = {/*Accion disminuir*/}) {
+        IconButton(onClick = {onDecrease()
+        }) {
             Icon(
                 imageVector = Icons.Filled.Remove,
                 contentDescription = "Decrease"
@@ -142,7 +142,9 @@ fun QuantitySelector(
         //Mostrar cantidad actual
         Text(text = "$quantity", fontSize = 16.sp, modifier = Modifier.padding(horizontal = 8.dp))
 
-        IconButton(onClick = {/*Accion para aumentar*/}){
+        IconButton(onClick = {
+            onIncrease()
+        }){
             Icon(
                 imageVector = Icons.Filled.Add,
                 contentDescription = "Increase",
@@ -259,7 +261,7 @@ fun CheckoutContent(totalAmount: Double) {
         ) {
             Text("Total Cost", fontSize = 16.sp)
             // Usar el valor de totalAmount directamente
-            Text("\$${totalAmount}", fontSize = 16.sp, color = Color.Black)
+            Text("\$${"%.2f".format(totalAmount)}", fontSize = 16.sp, color = Color.Black)
         }
 
         PrimaryButton(text = "Place Order", onClick = {
