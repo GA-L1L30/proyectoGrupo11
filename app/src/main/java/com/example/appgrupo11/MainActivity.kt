@@ -89,7 +89,6 @@ class MainActivity : ComponentActivity() {
                     1 -> FindProductsScreen()
                     2 -> CartScreen()
                     3 -> FavoritesScreen()
-                    //3 -> HomeScreen()
                     4 -> AccountScreen()
                 }
             }
