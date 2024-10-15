@@ -145,6 +145,9 @@ fun NavHostSetup(
             )
 
         }
+        composable("productsForCategory") {
+            CategoryScreen(navController = navController)
+        }
         composable("location") {
             LocationScreen(
                 onNavigateToHome ={
