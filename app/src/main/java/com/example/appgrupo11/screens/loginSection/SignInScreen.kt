@@ -1,14 +1,22 @@
 package com.example.appgrupo11.screens.loginSection
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgrupo11.Auth.AuthRequest
@@ -25,11 +33,13 @@ fun SignInScreen(
     onLoginSuccess: (String) -> Unit,
     onNavigateToSignUp: () -> Unit
 ) {
-    // Estados
+
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) } // Estado para visibilidad de la contraseña
 
 
     Surface(
@@ -43,7 +53,7 @@ fun SignInScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Logo de la app
+
             Image(
                 painter = painterResource(id = R.drawable.carrotcolored),
                 contentDescription = "Logo de la App",
@@ -51,9 +61,9 @@ fun SignInScreen(
                     .height(55.dp)
                     .width(47.dp)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(56.dp))
 
-            // Título e instrucciones
+
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.Start
@@ -73,22 +83,44 @@ fun SignInScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Campo de correo electrónico
+
             TextField(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email") },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.LightGray,
+                    errorContainerColor = Color(0xFFFFE6E6),
+                )
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campo de contraseña
+
             TextField(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password") },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.fillMaxWidth()
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val icon = if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                        modifier = Modifier
+                            .clickable { passwordVisible = !passwordVisible }
+                            .size(24.dp)
+                    )
+                },
+                modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.LightGray,
+                    errorContainerColor = Color(0xFFFFE6E6),
+                )
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -98,19 +130,19 @@ fun SignInScreen(
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            // Botón de "Forgot Password" alineado a la derecha
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = { /* Acción para recuperar contraseña */ }) {
-                    Text(text = "Forgot Password?")
+                TextButton(onClick = {  }) {
+                    Text(text = "Forgot Password?", color = Color.Black)
                 }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Botón de inicio de sesión o indicador de carga
+
             if (isLoading) {
                 CircularProgressIndicator()
             } else {
@@ -148,7 +180,16 @@ fun SignInScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             TextButton(onClick = onNavigateToSignUp) {
-                Text(text = "Don’t have an account? Sign up")
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = Color.Black)) {
+                            append("Don’t have an account? ")
+                        }
+                        withStyle(style = SpanStyle(color = Color.Green)) {
+                            append("Sign up")
+                        }
+                    }
+                )
             }
         }
     }

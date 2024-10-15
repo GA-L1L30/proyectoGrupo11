@@ -11,6 +11,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.example.appgrupo11.Navigation.NavHostSetup
 import com.example.appgrupo11.composables.CustomNavigationBar
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.data.getNavigationList
@@ -18,6 +20,7 @@ import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.screens.favorites.FavoritesScreen
 import com.example.appgrupo11.screens.loginSection.SignInScreen
+import com.example.appgrupo11.screens.loginSection.SignUpScreen
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
 import kotlinx.coroutines.delay
 
@@ -28,8 +31,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppGrupo11Theme {
                 var showSplashScreen by remember { mutableStateOf(true) }
-                var isUserLoggedIn by rememberSaveable { mutableStateOf(false) }
-                var selectedNavigationItemIndex by rememberSaveable { mutableIntStateOf(0) }
+                var isUserLoggedIn by remember { mutableStateOf(false) }
+                var hasSeenOnboarding by remember { mutableStateOf(false) }
+                var selectedNavigationItemIndex by remember { mutableStateOf(0) }
 
                 // Simula la pantalla de bienvenida durante 2 segundos
                 LaunchedEffect(Unit) {
@@ -37,22 +41,18 @@ class MainActivity : ComponentActivity() {
                     showSplashScreen = false
                 }
 
-                // Controla la navegación según el estado de autenticación
-                when {
-                    showSplashScreen -> SplashScreen() // Pantalla de bienvenida
-
-                    !isUserLoggedIn -> SignInScreen( // Redirige al login si no está autenticado
-                        onLoginSuccess = { token ->
-                            isUserLoggedIn = true // Actualiza el estado de autenticación
-                            // Aquí puedes almacenar el token si es necesario.
-                        },
-                        onNavigateToSignUp = {
-                            // Navega a la pantalla de registro (implementa si es necesario)
-                        }
-                    )
-
-                    else -> MainContent(
+                // Controla la navegación inicial
+                if (showSplashScreen) {
+                    SplashScreen() // Pantalla de bienvenida
+                } else {
+                    // Aquí se hace el control de la navegación, fuera del Scaffold
+                    NavHostSetup(
                         selectedNavigationItemIndex = selectedNavigationItemIndex,
+                        innerPadding = PaddingValues(0.dp), // Cambia esto según sea necesario
+                        isUserLoggedIn = isUserLoggedIn,
+                        hasSeenOnboarding = hasSeenOnboarding,
+                        onLoginSuccess = { isUserLoggedIn = true },
+                        onOnboardingComplete = { hasSeenOnboarding = true },
                         onNavigationItemSelected = { newIndex ->
                             selectedNavigationItemIndex = newIndex
                         }
@@ -61,37 +61,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-    @Composable
-    fun MainContent(
-        selectedNavigationItemIndex: Int,
-        onNavigationItemSelected: (Int) -> Unit
-    ) {
-        Scaffold(
-            topBar = {
-                CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title)
-            },
-            bottomBar = {
-                CustomNavigationBar(
-                    selectedNavigationItem = selectedNavigationItemIndex,
-                    onNavigationItemSelected = onNavigationItemSelected
-                )
-            },
-            modifier = Modifier.fillMaxSize()
-        ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .background(Color.White)
-            ) {
-                when (selectedNavigationItemIndex) {
-                    0 -> HomeScreen()
-                    1 -> FindProductsScreen()
-                    2 -> CartScreen()
-                    3 -> FavoritesScreen()
-                    4 -> AccountScreen()
-                }
-            }
-        }
-    }
 }
+
