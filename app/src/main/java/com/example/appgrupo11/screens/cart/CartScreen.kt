@@ -102,7 +102,7 @@ fun CartScreen(navController: NavController) {
             sheetState = sheetState,
 
             ) {
-            CheckoutContent(totalAmount = totalAmount)
+            CheckoutContent(totalAmount = totalAmount, navController = navController)
         }
     }
 }
@@ -217,7 +217,7 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
 }
 
 @Composable
-fun CheckoutContent(totalAmount: Double) {
+fun CheckoutContent(totalAmount: Double, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -266,7 +266,7 @@ fun CheckoutContent(totalAmount: Double) {
         }
 
         PrimaryButton(text = "Place Order", onClick = {
-            // Acción de confirmar el pedido
+            navController.navigate("orderAccepted")
         })
     }
 }

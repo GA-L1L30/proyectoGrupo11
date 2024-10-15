@@ -26,7 +26,7 @@ fun SearchScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 20.dp, top = 100.dp, end = 20.dp, bottom = 10.dp) ,
+            .padding(start = 20.dp, end = 20.dp, bottom = 10.dp) ,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){

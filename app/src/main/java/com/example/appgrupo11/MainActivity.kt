@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                                 selectedNavigationItemIndex = index
                             },
                             childrenComposable = {
-                                FindProductsScreen()
+                                FindProductsScreen(navController = navController)
                             },
                             navController = navController,
                         )
@@ -99,6 +99,18 @@ class MainActivity : ComponentActivity() {
                             },
                             childrenComposable = {
                                 AccountScreen()
+                            },
+                            navController = navController,
+                        )
+                    }
+                    composable("productsFiltered") {
+                        LayoutScreen(
+                            selectedNavigationItemIndex = selectedNavigationItemIndex,
+                            onNavigationItemSelected = { index ->
+                                selectedNavigationItemIndex = index
+                            },
+                            childrenComposable = {
+                                SearchScreen(navController = navController)
                             },
                             navController = navController,
                         )
