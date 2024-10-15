@@ -8,11 +8,10 @@ import com.example.appgrupo11.data.Product
 
 class CartViewModel:ViewModel() {
     // Lista de productos en el carrito
-    val cartItems = mutableStateListOf<Product>()
+    var cartItems = mutableStateListOf<Product>()
 
     // Estado del total acumulado
     var totalAmount = mutableStateOf(0.0)
-        private set
 
     // Inicialización de los productos en el carrito
     init {
@@ -25,25 +24,42 @@ class CartViewModel:ViewModel() {
                 Product(R.drawable.ginger, "Ginger", "250gm, Price", 2.99,1)
             )
         )
-        //calculateTotal() // Calcular el total inicial
+        calculateTotal() // Calcular el total inicial
+    }
+
+    //Metodo para aumentar la cantidad de un producto
+    fun onIncrease(item: Product){
+        val index = cartItems.indexOf(item)
+        if(index != -1){
+            cartItems[index].quantity += 1
+            calculateTotal()
+        }
+    }
+
+    //Metodo para aumentar la cantidad de un producto
+    fun onDecrease(item: Product){
+        val index = cartItems.indexOf(item)
+        if(index != -1 && cartItems[index].quantity > 0){
+            cartItems[index].quantity -= 1
+            calculateTotal()
+        }
     }
 
     // Función para actualizar la cantidad de un producto
 
     fun updateQuantity(item: Product, quantity: Int) {
         if(quantity >= 0){
-            val index = cartItems.indexOf(item)
+            var index = cartItems.indexOf(item)
             if(index != -1){
-               // cartItems[index].quantity = quantity
-                //calculateTotal() // Recalcular el total cuando cambie la cantidad
+                cartItems[index].quantity = quantity
+                calculateTotal() // Recalcular el total cuando cambie la cantidad
             }
         }
     }
 
     // Función para recalcular el total del carrito
-    /*
     private fun calculateTotal() {
         totalAmount.value = cartItems.sumOf { it.price * it.quantity }
     }
-     */
+
 }

@@ -116,8 +116,6 @@ class MainActivity : ComponentActivity() {
                     delay(2000)
                     showSplashScreen = false
                 }
-
-                // Controla la navegación según el estado de autenticación
             }
         }
     }
