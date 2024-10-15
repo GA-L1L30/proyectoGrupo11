@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "home") {
+                NavHost(navController = navController, startDestination = "sigIn") {
                     composable("signIn") {
                         SignInScreen(
                             onLoginSuccess = { token ->
