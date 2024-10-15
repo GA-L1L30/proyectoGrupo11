@@ -78,10 +78,61 @@ fun NavHostSetup(
             )
         }
         composable("home") {
-            MainContent(
+            LayoutScreen(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
-                onNavigationItemSelected = onNavigationItemSelected // Pasar el callback aquí
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    HomeScreen(navController = navController)
+                },
+                navController = navController,
             )
+        }
+        composable("findProducts") {
+            LayoutScreen(
+                selectedNavigationItemIndex = selectedNavigationItemIndex,
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    FindProductsScreen()
+                },
+                navController = navController,
+            )
+        }
+        composable("cart") {
+            LayoutScreen(
+                selectedNavigationItemIndex = selectedNavigationItemIndex,
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    CartScreen(navController = navController)
+                },
+                navController = navController,
+            )
+        }
+        composable("favorites") {
+            LayoutScreen(
+                selectedNavigationItemIndex = selectedNavigationItemIndex,
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    FavoritesScreen(navController = navController)
+                },
+                navController = navController,
+            )
+
+        }
+        composable("account") {
+            LayoutScreen(
+                selectedNavigationItemIndex = selectedNavigationItemIndex,
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    AccountScreen()
+                },
+                navController = navController,
+            )
+        }
+        composable("productDetail") {
+            ProductDetailScreen(navController = navController)
+        }
+        composable("orderAccepted") {
+            OfferAcceptedScreen(navController = navController)
         }
         composable("location") {
             LocationScreen(
@@ -89,39 +140,6 @@ fun NavHostSetup(
                     navController.navigate("home")
                 }
             )
-        }
-    }
-}
-
-@Composable
-fun MainContent(
-    selectedNavigationItemIndex: Int,
-    onNavigationItemSelected: (Int) -> Unit
-) {
-    Scaffold(
-        topBar = {
-            CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title)
-        },
-        bottomBar = {
-            CustomNavigationBar(
-                selectedNavigationItem = selectedNavigationItemIndex,
-                onNavigationItemSelected = onNavigationItemSelected
-            )
-        },
-        modifier = Modifier.fillMaxSize()
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .background(Color.White)
-        ) {
-            when (selectedNavigationItemIndex) {
-                0 -> HomeScreen()
-                1 -> FindProductsScreen()
-                2 -> CartScreen()
-                3 -> FavoritesScreen()
-                4 -> AccountScreen()
-            }
         }
     }
 }

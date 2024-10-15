@@ -11,10 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appgrupo11.composables.CustomCard
 
 @Composable
-fun CategoryScreen(){
+fun CategoryScreen(navController: NavController){
     val categoryViewModel : CategoryViewModel = viewModel()
 
     LazyVerticalGrid(
@@ -33,7 +34,7 @@ fun CategoryScreen(){
                     title = product.title,
                     description = product.description,
                     price = product.price,
-                    onClick = {}
+                    navController = navController
                 )
             }
     }

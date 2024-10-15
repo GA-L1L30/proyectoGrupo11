@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.appgrupo11.composables.CustomTopBar
 import com.example.appgrupo11.composables.ExpandableList
@@ -47,14 +48,16 @@ import com.example.appgrupo11.data.getProductDescriptionList
 import com.example.appgrupo11.ui.theme.SecondaryColorButton
 
 @Composable
-fun ProductDetailScreen() {
+fun ProductDetailScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CustomTopBar(title = "Product Detail", containerColor = Color.White, navigationIcon = { Icon(
                 Icons.AutoMirrored.Outlined.ArrowBack,
                 contentDescription = null,
-                modifier = Modifier.size(20.dp)
-            ) })
+                modifier = Modifier.size(20.dp),
+            ) },
+                navController = navController
+            )
         },
     ) { innerPadding ->
         Column(
