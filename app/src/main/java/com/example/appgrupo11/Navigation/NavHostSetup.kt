@@ -92,7 +92,7 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    FindProductsScreen()
+                    FindProductsScreen(navController = navController)
                 },
                 navController = navController,
             )
@@ -133,6 +133,17 @@ fun NavHostSetup(
         }
         composable("orderAccepted") {
             OfferAcceptedScreen(navController = navController)
+        }
+        composable("productsFiltered") {
+            LayoutScreen(
+                selectedNavigationItemIndex = selectedNavigationItemIndex,
+                onNavigationItemSelected = onNavigationItemSelected,
+                childrenComposable = {
+                    SearchScreen(navController = navController)
+                },
+                navController = navController,
+            )
+
         }
         composable("location") {
             LocationScreen(
