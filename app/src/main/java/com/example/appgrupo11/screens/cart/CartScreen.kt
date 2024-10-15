@@ -40,6 +40,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.navigation.NavController
+import com.example.appgrupo11.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.example.appgrupo11.data.Product
@@ -49,7 +52,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreen() {
+fun CartScreen(navController: NavController) {
     val cartViewModel: CartViewModel = viewModel()
     val totalAmount by cartViewModel.totalAmount
 
@@ -78,8 +81,6 @@ fun CartScreen() {
                 CartItemRow(item = item, cartViewModel = cartViewModel)
             }
         }
-
-        //Boton para ir a checkout
         PrimaryButton(text = "Go to Checkout $${"%.2f".format(totalAmount)}", onClick = {
                 coroutineScope.launch {
                     showBottomSheet = true

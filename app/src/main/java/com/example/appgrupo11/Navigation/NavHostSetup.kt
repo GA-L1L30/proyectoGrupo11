@@ -42,9 +42,5 @@ fun NavHostSetup() {
                 }
             )
         }
-
-        composable("home") {
-            HomeScreen() // Pantalla principal
-        }
     }
 }

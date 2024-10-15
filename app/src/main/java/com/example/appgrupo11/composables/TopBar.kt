@@ -12,6 +12,7 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.appgrupo11.ui.theme.LightGray
 
 @Composable
@@ -23,13 +24,13 @@ fun DefaultNavigationIcon(onClick: () -> Unit = {}) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTopBar(title: String, containerColor: Color = LightGray, navigationIcon: @Composable () -> Unit = { DefaultNavigationIcon() }) {
+fun CustomTopBar(title: String, containerColor: Color = LightGray, navigationIcon: @Composable () -> Unit = { DefaultNavigationIcon() }, navController: NavController) {
     CenterAlignedTopAppBar(
         title = { Box(contentAlignment = Alignment.Center) {
             Text(text = title)
         } },
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigate("home") }) {
                 navigationIcon()
             }
         },

@@ -29,16 +29,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.appgrupo11.ui.theme.AppColors
 
 //Anteriormente este codigo estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
 @Composable
 fun CustomCard(
     imageRes: Int,
-    title : String,
+    title: String,
     description: String,
     price: Double,
-    onClick: () -> Unit
+    navController: NavController
 ){
     Card (
         modifier = Modifier
@@ -97,7 +98,7 @@ fun CustomCard(
                 )
 
                 ButtonAdd(
-                    onClick = onClick
+                    onClick = {navController.navigate("productDetail")}
                 )
             }
         }

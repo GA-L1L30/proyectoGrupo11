@@ -28,14 +28,15 @@ fun GrayButton(
     text : String,
     leftIcon: @Composable () -> Unit = {},
     onClick: () -> Unit,
-    textColor: Color
+    textColor: Color,
+    containerColor: Color = AppColors.Gray
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 10.dp)
         .height(70.dp)
         .clip(RoundedCornerShape(14.dp))
-        .background(AppColors.Gray)
+        .background(containerColor)
         .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ){
