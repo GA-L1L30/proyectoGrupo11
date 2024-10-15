@@ -39,7 +39,7 @@ import com.example.appgrupo11.composables.Search
 
 
 @Composable
-fun FindProductsScreen(){
+fun FindProductsScreen(navController: NavController){
     val viewModel: FindProductosViewModel = viewModel()
     var showFiltersPopup by remember { mutableStateOf(false) }
 
@@ -77,7 +77,7 @@ fun FindProductsScreen(){
             }
         }
         if(showFiltersPopup){
-            FiltersPopUp(onDismiss = { showFiltersPopup = false })
+            FiltersPopUp(onDismiss = { showFiltersPopup = false }, navController = navController)
         }
     }
 }
