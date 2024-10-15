@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,8 +22,10 @@ import com.example.appgrupo11.composables.PrimaryButton
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
@@ -34,9 +37,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import com.example.appgrupo11.data.Product
+import com.example.appgrupo11.ui.theme.AppColors
 import kotlinx.coroutines.launch
 
 
@@ -66,19 +73,19 @@ fun CartScreen() {
             
             items(cartViewModel.cartItems.size){ index ->
                 val item = cartViewModel.cartItems[index]
+                HorizontalDivider()
+                Spacer(modifier = Modifier.height(10.dp))
                 CartItemRow(item = item, cartViewModel = cartViewModel)
-                Divider(modifier = Modifier.padding(vertical = 8.dp))
+                //Divider(modifier = Modifier.padding(vertical = 8.dp))
             }
         }
 
         //Boton para ir a checkout
         PrimaryButton(text = "Go to Checkout $$totalAmount", onClick = {
-            //if(!sheetState.isVisible){
                 coroutineScope.launch {
                     showBottomSheet = true
                     sheetState.show()
                 }
-            //}
         })
     }
 
@@ -138,7 +145,8 @@ fun QuantitySelector(
         IconButton(onClick = {/*Accion para aumentar*/}){
             Icon(
                 imageVector = Icons.Filled.Add,
-                contentDescription = "Increase"
+                contentDescription = "Increase",
+                tint = AppColors.LightGreen
             )
         }
     }
@@ -165,10 +173,33 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
 
         Column(modifier = Modifier.weight(1f)) {
             //Nombre del producto
-            Text(text = item.title, fontSize = 18.sp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                Text(text = item.title, fontSize = 18.sp)
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = "Close",
+                    tint = Color.Gray,
+                    modifier = Modifier
+                    .padding(end = 10.dp)
+                )
+            }
+
 
             //Descripcion
             Text(text = item.description, fontSize = 14.sp,color = Color.Gray)
+
+            Box(modifier = Modifier.fillMaxWidth().height(20.dp)){
+                Text(
+                    text =  "$${item.price}",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(end = 10.dp).align(Alignment.CenterEnd),
+                    textAlign = TextAlign.End
+                )
+            }
 
             //Control de cantidad
             QuantitySelector(
@@ -177,11 +208,6 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
                 onDecrease = {cartViewModel.updateQuantity(item, item.quantity -1 ) },
             )
 
-            Text(
-                text =  "$${item.price}",
-                fontSize = 16.sp,
-               // modifier = Modifier.padding( = 8.dp)
-            )
 
         }
     }
