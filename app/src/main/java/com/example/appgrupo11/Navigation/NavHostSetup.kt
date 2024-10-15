@@ -18,6 +18,7 @@ import com.example.appgrupo11.data.getNavigationList
 import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.screens.favorites.FavoritesScreen
+import com.example.appgrupo11.screens.loginSection.LocationScreen
 import com.example.appgrupo11.screens.loginSection.SignInScreen
 import com.example.appgrupo11.screens.loginSection.SignUpScreen
 
@@ -67,7 +68,7 @@ fun NavHostSetup(
         composable("signup") {
             SignUpScreen(
                 onSignUpSuccess = {
-                    navController.navigate("home") {
+                    navController.navigate("location") {
                         popUpTo("signup") { inclusive = true } // Remover SignUp de la pila de navegación
                     }
                 },
@@ -80,6 +81,13 @@ fun NavHostSetup(
             MainContent(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected // Pasar el callback aquí
+            )
+        }
+        composable("location") {
+            LocationScreen(
+                onNavigateToHome ={
+                    navController.navigate("home")
+                }
             )
         }
     }
