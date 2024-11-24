@@ -6,4 +6,6 @@ data class Product(
     val description: String,
     val price: Double,
     var quantity: Int,
-)
+){
+    constructor(): this(0,"","",0.0,0)
+}
