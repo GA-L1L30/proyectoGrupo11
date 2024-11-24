@@ -3,6 +3,7 @@ package com.example.appgrupo11.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -39,7 +40,7 @@ import com.example.appgrupo11.composables.Search
 
 
 @Composable
-fun FindProductsScreen(){
+fun FindProductsScreen(navController: NavController){
     val viewModel: FindProductosViewModel = viewModel()
     var showFiltersPopup by remember { mutableStateOf(false) }
 
@@ -72,12 +73,16 @@ fun FindProductsScreen(){
                     CategoryCard(
                         imageRes = category.imageRes,
                         title = category.title ,
-                        backgroundColor = category.backgroundColor)
+                        backgroundColor = category.backgroundColor,
+                        onClick = {
+                            navController.navigate("productsForCategory")
+                        }
+                    )
                 }
             }
         }
         if(showFiltersPopup){
-            FiltersPopUp(onDismiss = { showFiltersPopup = false })
+            FiltersPopUp(onDismiss = { showFiltersPopup = false }, navController = navController)
         }
     }
 }
@@ -86,7 +91,8 @@ fun FindProductsScreen(){
 fun CategoryCard(
     imageRes: Int,
     title : String,
-    backgroundColor: Color
+    backgroundColor: Color,
+    onClick: () -> Unit
 ){
     val darkBorder = backgroundColor.copy(alpha = 1f).darken()
     Card(
@@ -94,7 +100,8 @@ fun CategoryCard(
             .padding(top = 3.dp)
             .size(180.dp)
             .clip(RoundedCornerShape(16.dp))
-            .border(1.dp, darkBorder, RoundedCornerShape(16.dp)),
+            .border(1.dp, darkBorder, RoundedCornerShape(16.dp))
+            .clickable { onClick() },
         colors= CardDefaults.cardColors(containerColor = backgroundColor)
     ){
         Column(
