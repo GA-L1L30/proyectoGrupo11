@@ -71,7 +71,6 @@ class HomeViewModel : ViewModel() {
                     HomeUiState.Error(message = "Error fetching data: ${e.message}")
             }
 
-
             /*
         viewModelScope.launch {
             try{
