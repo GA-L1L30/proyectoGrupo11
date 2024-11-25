@@ -35,7 +35,6 @@ class HomeViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                // Obtener todos los productos desde Firestore
                 val snapshot = firestore.collection(productsCollection).get().await()
                 val products = snapshot.documents.mapNotNull { doc ->
                     doc.toObject<Product>()?.let { product ->
@@ -43,7 +42,6 @@ class HomeViewModel : ViewModel() {
                     }
                 }
 
-                // Filtrar productos según los títulos para cada categoría
                 val exclusiveOffers = products.filter {
                     it.second.title in listOf(
                         "Organic Bananas",
@@ -51,7 +49,7 @@ class HomeViewModel : ViewModel() {
                         "Strawberry"
                     )
                 }
-                    .map { it.second } // Solo extraer el producto
+                    .map { it.second }
 
                 val bestSelling = products.filter {
                     it.second.title in listOf(
@@ -60,15 +58,15 @@ class HomeViewModel : ViewModel() {
                         "Strawberry"
                     )
                 }
-                    .map { it.second } // Solo extraer el producto
+                    .map { it.second }
 
-                // Actualizar el estado con los datos filtrados
+
                 viewModelState.value = HomeUiState.Success(
                     exclusiveOffers = exclusiveOffers,
                     bestSelling = bestSelling
                 )
             } catch (e: Exception) {
-                // Manejar errores
+
                 viewModelState.value =
                     HomeUiState.Error(message = "Error fetching data: ${e.message}")
             }
