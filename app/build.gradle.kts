@@ -75,6 +75,7 @@ dependencies {
 
     //Firebase
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
