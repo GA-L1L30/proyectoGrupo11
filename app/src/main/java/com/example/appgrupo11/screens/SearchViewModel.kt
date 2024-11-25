@@ -1,7 +1,9 @@
 package com.example.appgrupo11.screens
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,21 +22,33 @@ class SearchViewModel : ViewModel(){
     val searchProducts: StateFlow<List<Product>> get() = _searchProducts
 
 
+    var searchQuery = mutableStateOf("")
+        private set
+
     init{
-            fetchSearchProducts()
+            fetchSearchProducts("")
     }
 
-    private fun fetchSearchProducts() {
-        viewModelScope.launch {
-            try {
-                // Obtener productos desde Firestore
+    fun updateSearchQuery(query:String){
+        searchQuery.value = query
+        fetchSearchProducts(query)
+
+    }
+
+    fun fetchSearchProducts(query: String){
+        viewModelScope.launch(){
+            try{
                 val snapshot = firestore.collection(productsCollection).get().await()
+
                 val products = snapshot.documents.mapNotNull { it.toObject<Product>() }
 
-                // Actualizar el flujo de estado con los productos obtenidos
-                _searchProducts.value = products
-            } catch (e: Exception) {
-                // Manejo de errores: en caso de fallo, dejar la lista vacía o mostrar un mensaje
+                _searchProducts.value = if (query.isEmpty()) {
+                    products
+                } else {
+                    products.filter { it.title.contains(query, ignoreCase = true) }
+                }
+
+            }catch(e: Exception){
                 e.printStackTrace()
                 _searchProducts.value = emptyList()
             }
