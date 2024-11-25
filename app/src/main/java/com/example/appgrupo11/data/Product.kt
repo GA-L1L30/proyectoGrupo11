@@ -11,3 +11,15 @@ data class Product(
     var documentId: String = ""
 }
 
+fun Product.toMap(): Map<String, Any> {
+    return mapOf(
+        "imageUrl" to this.imageUrl,
+        "title" to this.title,
+        "description" to this.description,
+        "price" to this.price,
+        "quantity" to this.quantity,
+        "category" to this.category,
+        "documentId" to this.documentId
+    )
+}
+

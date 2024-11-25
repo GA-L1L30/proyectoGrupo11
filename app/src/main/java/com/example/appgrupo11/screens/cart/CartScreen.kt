@@ -88,6 +88,7 @@ fun CartScreen(navController: NavController) {
                 coroutineScope.launch {
                     showBottomSheet = true
                     sheetState.show()
+                    cartViewModel.saveOrderToCheckout()
                 }
         })
     }
