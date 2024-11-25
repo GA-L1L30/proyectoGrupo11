@@ -38,7 +38,7 @@ class FavoritesViewModel: ViewModel() {
                         "Sprite Can",
                         "Diet Coke",
                         "Apple & Grape Juice",
-                        "Coca cola Can",
+                        "Coca Cola Can",
                         "Pepsi Can"
                     )
                 }
