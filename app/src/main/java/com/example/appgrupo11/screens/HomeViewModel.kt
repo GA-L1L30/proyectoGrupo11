@@ -38,7 +38,7 @@ class HomeViewModel : ViewModel() {
                 val snapshot = firestore.collection(productsCollection).get().await()
                 val products = snapshot.documents.mapNotNull { doc ->
                     doc.toObject<Product>()?.let { product ->
-                        doc.id to product // Mapear a un par de (DocumentID, Product)
+                        doc.id to product
                     }
                 }
 
@@ -59,7 +59,6 @@ class HomeViewModel : ViewModel() {
                     )
                 }
                     .map { it.second }
-
 
                 viewModelState.value = HomeUiState.Success(
                     exclusiveOffers = exclusiveOffers,
