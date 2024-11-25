@@ -2,9 +2,12 @@ package com.example.appgrupo11.screens.cart
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
+import com.example.appgrupo11.data.toMap
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 //import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.toObject
@@ -129,6 +132,32 @@ class CartViewModel:ViewModel() {
         }
     }
 
+    private fun filterProductsWithQuantityGreaterThanOne() {
+        cartItems = cartItems.filter { it.second.quantity >= 1 }.toMutableStateList()
+    }
+
+    fun saveOrderToCheckout() {
+        filterProductsWithQuantityGreaterThanOne()
+        val checkout = mapOf(
+            "products" to cartItems.map { it.toMap() },
+            "totalAmount" to totalAmount.value,
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                firestore.collection("checkout").add(checkout).await()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+}
+
+fun Pair<String, Product>.toMap(): Map<String, Any> {
+    return mapOf(
+        "productId" to this.first,
+        "product" to this.second.toMap()
+    )
 }
 
 
