@@ -47,7 +47,7 @@ fun SearchScreen(navController: NavHostController) {
             items(viewModel.searchProducts.value){
                 product ->
                 CustomCard(
-                    imageRes = product.imageRes,
+                    imageUrl = product.imageUrl,
                     title = product.title,
                     description = product.description,
                     price = product.price,

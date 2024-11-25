@@ -30,12 +30,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import com.example.appgrupo11.ui.theme.AppColors
+import coil.compose.AsyncImage
+
 
 //Anteriormente este codigo estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
 @Composable
 fun CustomCard(
-    imageRes: Int,
+    imageUrl: String,
     title: String,
     description: String,
     price: Double,
@@ -55,16 +58,16 @@ fun CustomCard(
             modifier = Modifier
                 .padding(16.dp)
         ){
-            Image(
-                painter = painterResource(id = imageRes),
-                contentDescription = "Card Image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .padding(top = 20.dp)
-                    .clip(RoundedCornerShape(12.dp)),
-                contentScale = ContentScale.Fit
-            )
+           AsyncImage(
+               model = imageUrl,
+               contentDescription = "Card Image",
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .height(100.dp)
+                   .padding(top = 20.dp)
+                   .clip(RoundedCornerShape(12.dp)),
+               contentScale = ContentScale.Fit
+           )
 
             Spacer(modifier = Modifier.height(10.dp))
 

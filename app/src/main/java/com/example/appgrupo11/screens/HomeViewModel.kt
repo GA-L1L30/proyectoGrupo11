@@ -4,13 +4,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
+import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class HomeViewModel : ViewModel() {
     private val viewModelState = MutableStateFlow<HomeUiState>(HomeUiState.Loading())
+    private val firestore = FirebaseFirestore.getInstance()
+    private val productsCollection = "cart"
 
 
     val uiState = viewModelState
@@ -27,6 +33,48 @@ class HomeViewModel : ViewModel() {
     private fun refresh() {
         viewModelState.value = HomeUiState.Loading()
 
+        viewModelScope.launch {
+            try {
+                // Obtener todos los productos desde Firestore
+                val snapshot = firestore.collection(productsCollection).get().await()
+                val products = snapshot.documents.mapNotNull { doc ->
+                    doc.toObject<Product>()?.let { product ->
+                        doc.id to product // Mapear a un par de (DocumentID, Product)
+                    }
+                }
+
+                // Filtrar productos según los títulos para cada categoría
+                val exclusiveOffers = products.filter {
+                    it.second.title in listOf(
+                        "Organic Bananas",
+                        "Red Apple",
+                        "Strawberry"
+                    )
+                }
+                    .map { it.second } // Solo extraer el producto
+
+                val bestSelling = products.filter {
+                    it.second.title in listOf(
+                        "Bell Pepper Red",
+                        "Ginger",
+                        "Strawberry"
+                    )
+                }
+                    .map { it.second } // Solo extraer el producto
+
+                // Actualizar el estado con los datos filtrados
+                viewModelState.value = HomeUiState.Success(
+                    exclusiveOffers = exclusiveOffers,
+                    bestSelling = bestSelling
+                )
+            } catch (e: Exception) {
+                // Manejar errores
+                viewModelState.value =
+                    HomeUiState.Error(message = "Error fetching data: ${e.message}")
+            }
+
+
+            /*
         viewModelScope.launch {
             try{
                 val exclusiveOffers = listOf(
@@ -48,6 +96,7 @@ class HomeViewModel : ViewModel() {
             }catch (e: Exception){
                 viewModelState.value = HomeUiState.Error(message = "Error with data")
             }
+        }*/
         }
     }
 }
