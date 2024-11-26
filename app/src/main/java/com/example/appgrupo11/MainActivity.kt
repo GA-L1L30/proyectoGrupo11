@@ -5,16 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.appgrupo11.Navigation.NavHostSetup
-import com.example.appgrupo11.screens.SplashScreen
+import com.example.appgrupo11.navigation.NavHostSetup
+import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.ui.theme.AppGrupo11Theme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,3 +55,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+

@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,11 +39,8 @@ import com.example.appgrupo11.composables.ErrorDialog
 fun FavoritesScreen(navController: NavController) {
     var showDialog by remember { mutableStateOf(false) }
     val favoritesViewModel: FavoritesViewModel = viewModel()
-    // Obtener la lista de productos desde el viewmodel
     val products by favoritesViewModel.favoritesItems.collectAsState(initial = emptyList())
 
-
-    //Estructura de la pantalla
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -59,7 +55,7 @@ fun FavoritesScreen(navController: NavController) {
 
 
         }
-        //Boton para ir a checkout
+
         PrimaryButton("Add All To Cart", onClick = { showDialog = true }
         )
         if(showDialog) {
@@ -107,8 +103,6 @@ fun ProductItem(product: Product) {
             imageVector = Icons.AutoMirrored.Outlined.ArrowForwardIos,
             contentDescription = "Expand",
             modifier = Modifier.size(24.dp)
-
-
         )
     }
 }
