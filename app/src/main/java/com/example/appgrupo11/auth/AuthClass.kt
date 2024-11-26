@@ -1,4 +1,4 @@
-package com.example.appgrupo11.Auth
+package com.example.appgrupo11.auth
 
 // AuthRequest.kt
 data class AuthRequest(
