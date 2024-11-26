@@ -21,6 +21,8 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,12 +41,17 @@ import com.example.appgrupo11.ui.theme.AppColors
 import com.example.appgrupo11.ui.theme.LightGrayEmail
 
 @Composable
-fun AccountScreen(accountOptions: List<AccountOption> = getAccountOptions()) {
+fun AccountScreen(
+    accountOptions: List<AccountOption> = getAccountOptions(),
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+){
+
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(vertical = 20.dp), verticalArrangement = Arrangement.SpaceBetween) {
         UserInformation()
-        AccountOptionList(accountOptions)
+        AccountOptionList(accountOptions, isDarkMode, onToggleDarkMode)
         Box(modifier = Modifier.padding(10.dp)) {
             GrayButton(
                 text = "Log Out",
@@ -60,12 +67,14 @@ fun AccountScreen(accountOptions: List<AccountOption> = getAccountOptions()) {
             )
         }
     }
-
-
 }
 
 @Composable
-fun AccountOptionList(options: List<AccountOption>) {
+fun AccountOptionList(
+    options: List<AccountOption>,
+    isDarkMode: Boolean, // Recibe el estado de isDarkMode
+    onToggleDarkMode: (Boolean) -> Unit // Recibe la función para cambiar el estado
+) {
     Column {
         options.forEachIndexed { index, accountOption ->
             if (index == 0) {
@@ -73,7 +82,8 @@ fun AccountOptionList(options: List<AccountOption>) {
             }
             AccountOptionItem(accountOption)
         }
-        DarkModeButton(onChange = {})
+        // Usar el estado y la función de cambio para DarkModeButton
+        DarkModeButton(isDarkMode = isDarkMode, onChange = onToggleDarkMode)
         HorizontalDivider()
     }
 }
@@ -129,15 +139,13 @@ fun UserInformation() {
 }
 
 @Composable
-fun DarkModeButton(onChange: () -> Unit) {
+fun DarkModeButton(isDarkMode: Boolean, onChange: (Boolean) -> Unit) {
     ListItem(colors = ListItemDefaults.colors(
         containerColor = Color.White
-    ),headlineContent = {
+    ), headlineContent = {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Text(text = stringResource(id = R.string.dark_mode), fontWeight = FontWeight(weight = 500), modifier = Modifier.padding(start = 40.dp))
-            Switch(checked = false, onCheckedChange = { onChange() })
+            Switch(checked = isDarkMode, onCheckedChange = { onChange(it) }) // Usa el cambio del Switch
         }
     })
-
-
 }

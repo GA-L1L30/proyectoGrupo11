@@ -48,7 +48,11 @@ import com.example.appgrupo11.data.getProductDescriptionList
 import com.example.appgrupo11.ui.theme.SecondaryColorButton
 
 @Composable
-fun ProductDetailScreen(navController: NavController) {
+fun ProductDetailScreen(
+    navController: NavController,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+){
     Scaffold(
         topBar = {
             CustomTopBar(title = "Product Detail", containerColor = Color.White, navigationIcon = { Icon(
@@ -56,7 +60,9 @@ fun ProductDetailScreen(navController: NavController) {
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
             ) },
-                navController = navController
+                navController = navController,
+                isDarkMode = isDarkMode, // Pasamos el estado del modo oscuro
+                onToggleDarkMode = onToggleDarkMode // Pasamos la función para alternar el modo oscuro
             )
         },
     ) { innerPadding ->

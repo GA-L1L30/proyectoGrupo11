@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,10 +20,17 @@ fun LayoutScreen(
     onNavigationItemSelected: (Int) -> Unit,
     childrenComposable: @Composable () -> Unit,
     navController: NavHostController,
+    isDarkMode: Boolean, // Parámetro para el modo oscuro
+    onToggleDarkMode: (Boolean) -> Unit // Función para alternar el modo oscuro
 ) {
     Scaffold(
         topBar = {
-            CustomTopBar(title = getNavigationList()[selectedNavigationItemIndex].title, navController = navController)
+            CustomTopBar(
+                title = getNavigationList()[selectedNavigationItemIndex].title,
+                navController = navController,
+                isDarkMode = isDarkMode, // Pasamos el estado del modo oscuro
+                onToggleDarkMode = onToggleDarkMode // Pasamos la función para alternar el modo oscuro
+            )
         },
         bottomBar = {
             CustomNavigationBar(
@@ -36,7 +44,9 @@ fun LayoutScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .background(Color.White)
+                .background(
+                    if (isDarkMode) MaterialTheme.colorScheme.background else Color.White
+                ) // Cambia el fondo según el modo
         ) {
             childrenComposable()
         }

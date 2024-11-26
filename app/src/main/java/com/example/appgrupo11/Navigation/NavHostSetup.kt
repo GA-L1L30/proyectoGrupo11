@@ -1,21 +1,15 @@
 package com.example.appgrupo11.Navigation
 
 import LocationScreen
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.appgrupo11.composables.CustomNavigationBar
-import com.example.appgrupo11.composables.CustomTopBar
-import com.example.appgrupo11.data.getNavigationList
+
 import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.screens.favorites.FavoritesScreen
@@ -31,7 +25,9 @@ fun NavHostSetup(
     hasSeenOnboarding: Boolean,
     onLoginSuccess: () -> Unit,
     onOnboardingComplete: () -> Unit,
-    onNavigationItemSelected: (Int) -> Unit // Añadir este parámetro para manejar la selección
+    onNavigationItemSelected: (Int) -> Unit, // Añadir este parámetro para manejar la selección
+    isDarkMode: Boolean,  // Recibir el parámetro de modo oscuro
+    onToggleDarkMode: (Boolean) -> Unit // Función para alternar el modo oscuro
 ) {
     val navController = rememberNavController() // Controlador de navegación
 
@@ -86,6 +82,8 @@ fun NavHostSetup(
                     HomeScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
         }
         composable("findProducts") {
@@ -96,6 +94,8 @@ fun NavHostSetup(
                     FindProductsScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
         }
         composable("cart") {
@@ -106,6 +106,8 @@ fun NavHostSetup(
                     CartScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
         }
         composable("favorites") {
@@ -116,24 +118,38 @@ fun NavHostSetup(
                     FavoritesScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
-
         }
         composable("account") {
             LayoutScreen(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    AccountScreen()
+                    AccountScreen(
+                        isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                        onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                    )
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
         }
         composable("productDetail") {
-            ProductDetailScreen(navController = navController)
+            ProductDetailScreen(
+                navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
         composable("orderAccepted") {
-            OfferAcceptedScreen(navController = navController)
+            OfferAcceptedScreen(
+                navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
         composable("productsFiltered") {
             LayoutScreen(
@@ -143,19 +159,23 @@ fun NavHostSetup(
                     SearchScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
             )
-
         }
         composable("productsForCategory") {
-            CategoryScreen(navController = navController)
+            CategoryScreen(
+                navController = navController,
+                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode)
+            )
         }
         composable("location") {
             LocationScreen(
-                onNavigateToHome ={
+                onNavigateToHome = {
                     navController.navigate("home")
                 }
             )
         }
     }
 }
-
