@@ -19,17 +19,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.appgrupo11.Auth.AuthRequest
-import com.example.appgrupo11.Auth.AuthResponse
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.appgrupo11.auth.AuthViewModel
 import com.example.appgrupo11.R
-import com.example.appgrupo11.Retrofit.RetrofitInstance
 import com.example.appgrupo11.composables.PrimaryButton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @Composable
 fun SignInScreen(
+    authViewModel: AuthViewModel = hiltViewModel(),
     onLoginSuccess: (String) -> Unit,
     onNavigateToSignUp: () -> Unit
 ) {
@@ -152,27 +149,18 @@ fun SignInScreen(
                         isLoading = true
                         errorMessage = ""
 
-                        RetrofitInstance.api.login(
-                            AuthRequest(username = email, password = password)
-                        ).enqueue(object : Callback<AuthResponse> {
-                            override fun onResponse(
-                                call: Call<AuthResponse>,
-                                response: Response<AuthResponse>
-                            ) {
+                        authViewModel.login(
+                            username = email,
+                            password = password,
+                            onSuccess = { token ->
                                 isLoading = false
-                                if (response.isSuccessful) {
-                                    val token = response.body()?.token
-                                    onLoginSuccess(token ?: "")
-                                } else {
-                                    errorMessage = "Login failed. Please try again."
-                                }
-                            }
-
-                            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                                onLoginSuccess(token)
+                            },
+                            onError = { error ->
                                 isLoading = false
-                                errorMessage = "Error: ${t.message}"
+                                errorMessage = error
                             }
-                        })
+                        )
                     }
                 )
             }

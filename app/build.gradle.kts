@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -67,6 +68,9 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
     implementation(libs.androidx.navigation.compose)
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -110,4 +114,8 @@ dependencies {
 
 
 
+}
+
+kapt {
+    correctErrorTypes = true
 }
