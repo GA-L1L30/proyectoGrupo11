@@ -45,9 +45,12 @@ import androidx.navigation.NavController
 import com.example.appgrupo11.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import coil.compose.rememberAsyncImagePainter
 import com.example.appgrupo11.data.Product
 import com.example.appgrupo11.ui.theme.AppColors
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.lazy.items
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -85,6 +88,7 @@ fun CartScreen(navController: NavController) {
                 coroutineScope.launch {
                     showBottomSheet = true
                     sheetState.show()
+                    cartViewModel.saveOrderToCheckout()
                 }
         })
     }
@@ -157,7 +161,8 @@ fun QuantitySelector(
 
 
 @Composable
-fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
+fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
+    val product = item.second
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -165,12 +170,12 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
     ){
         //Imagen del Producto
         Image(
-            painter = painterResource(id = item.imageRes),
-            contentDescription = item.title,
+            painter = rememberAsyncImagePainter(product.imageUrl),
+            contentDescription = product.title,
             modifier = Modifier
-                .size(80.dp)
+                .size(100.dp)
                 .padding(end = 16.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Fit
 
         )
 
@@ -180,7 +185,7 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
-                Text(text = item.title, fontSize = 18.sp)
+                Text(text = product.title, fontSize = 18.sp)
                 Icon(
                     imageVector = Icons.Filled.Close,
                     contentDescription = "Close",
@@ -192,11 +197,11 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
 
 
             //Descripcion
-            Text(text = item.description, fontSize = 14.sp,color = Color.Gray)
+            Text(text = product.description, fontSize = 14.sp,color = Color.Gray)
 
             Box(modifier = Modifier.fillMaxWidth().height(20.dp)){
                 Text(
-                    text =  "$${item.price}",
+                    text =  "$${product.price}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(end = 10.dp).align(Alignment.CenterEnd),
@@ -206,9 +211,9 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
 
             //Control de cantidad
             QuantitySelector(
-                quantity = item.quantity,
-                onIncrease = {cartViewModel.updateQuantity(item, item.quantity +1 ) },
-                onDecrease = {cartViewModel.updateQuantity(item, item.quantity -1 ) },
+                quantity = product.quantity,
+                onIncrease = {cartViewModel.updateQuantity(item,  product.quantity +1 ) },
+                onDecrease = {cartViewModel.updateQuantity(item, product.quantity -1 ) },
             )
 
 

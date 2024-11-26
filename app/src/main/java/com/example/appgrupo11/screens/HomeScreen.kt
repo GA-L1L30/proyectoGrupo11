@@ -205,7 +205,7 @@ fun ExclusiveOffer(products: List<Product>, navController: NavController){
         items(products.size){ i->
             val product = products[i]
             CustomCard(
-               imageRes = product.imageRes,
+               imageUrl = product.imageUrl,
                 title =  product.title,
                 description = product.description,
                 price = product.price,
@@ -226,7 +226,7 @@ fun BestSelling(products: List<Product>, navController: NavController) {
         items(products.size) { i ->
             val product = products[i]
             CustomCard(
-                imageRes = product.imageRes,
+                imageUrl = product.imageUrl,
                 title = product.title,
                 description = product.description,
                 price = product.price,

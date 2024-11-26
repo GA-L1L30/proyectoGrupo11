@@ -53,7 +53,7 @@ fun CategoryScreen(navController: NavController){
                 items(categoryViewModel.products){
                         product ->
                     CustomCard(
-                        imageRes = product.imageRes,
+                        imageUrl = product.imageUrl,
                         title = product.title,
                         description = product.description,
                         price = product.price,

@@ -4,9 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appgrupo11.R
 import com.example.appgrupo11.data.Product
+import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+
 
 class CategoryViewModel : ViewModel(){
+    private val firestore = FirebaseFirestore.getInstance()
+    private val productsCollection = "cart"
+
     private val _products = mutableListOf<Product>()
     val products: List<Product> get() = _products
 
@@ -16,16 +24,39 @@ class CategoryViewModel : ViewModel(){
         }
     }
 
+    private suspend fun fetchProducts(){
+        try{
+            val snapshot = firestore.collection(productsCollection)
+                .whereEqualTo("category", "beverage")
+                .get()
+                .await()
+
+            val items = snapshot.documents.mapNotNull { document ->
+                val product = document.toObject(Product::class.java)
+                product?.apply {
+                    documentId = document.id
+                }
+            }
+
+            _products.clear()
+            _products.addAll(items)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    /*
     private fun fetchProducts() {
         _products.addAll(
             listOf(
-                Product(imageRes = R.drawable.coke, title=  "Diet Coke",  description = "355ml, Price", price = 1.99,1),
-                Product(imageRes = R.drawable.sprite, title=  "Sprite Can", description = "325ml, Price", price = 1.50,1),
-                Product(imageRes = R.drawable.applejuice, title=  "Apple Juice", description = "325ml, Price", price = 1.50,1),
-                Product(imageRes = R.drawable.orangejuice, title=  "Orange Juice", description = "2L, Price", price = 15.99,1),
-                Product(imageRes = R.drawable.redcoke, title=  "Coca Cola Can", description = "325ml, Price", price = 4.99,1),
-                Product(imageRes = R.drawable.pepsi, title=  "Pepsi Can", description = "330ml, Price", price = 4.99,1),
+                Product(id= 5, imageRes = R.drawable.coke,"Diet Coke",   "355ml, Price",  1.99,1),
+                Product(id= 6, imageRes = R.drawable.sprite, "Sprite Can",  "325ml, Price", 1.50,1),
+                Product(id= 7, imageRes = R.drawable.applejuice, "Apple Juice",  "325ml, Price", 1.50,1),
+                Product(id= 8, imageRes = R.drawable.orangejuice,  "Orange Juice",  "2L, Price",  15.99,1),
+                Product(id= 9, imageRes = R.drawable.redcoke,  "Coca Cola Can",  "325ml, Price",  4.99,1),
+                Product(id= 10,imageRes = R.drawable.pepsi, "Pepsi Can",  "330ml, Price",  4.99,1),
             )
         )
-    }
+    }*/
 }
+
