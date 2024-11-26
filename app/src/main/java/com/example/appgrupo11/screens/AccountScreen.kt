@@ -21,8 +21,6 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -63,7 +61,8 @@ fun AccountScreen(
                     )
                 },
                 onClick = {},
-                textColor = AppColors.LightGreen
+                textColor = AppColors.LightGreen,
+                containerColor = if(isDarkMode) AppColors.DarkViolet else AppColors.Gray
             )
         }
     }
@@ -72,15 +71,15 @@ fun AccountScreen(
 @Composable
 fun AccountOptionList(
     options: List<AccountOption>,
-    isDarkMode: Boolean, // Recibe el estado de isDarkMode
-    onToggleDarkMode: (Boolean) -> Unit // Recibe la función para cambiar el estado
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
 ) {
     Column {
         options.forEachIndexed { index, accountOption ->
             if (index == 0) {
                 HorizontalDivider()
             }
-            AccountOptionItem(accountOption)
+            AccountOptionItem(accountOption, isDarkMode)
         }
         // Usar el estado y la función de cambio para DarkModeButton
         DarkModeButton(isDarkMode = isDarkMode, onChange = onToggleDarkMode)
@@ -89,10 +88,10 @@ fun AccountOptionList(
 }
 
 @Composable
-fun AccountOptionItem(item: AccountOption) {
+fun AccountOptionItem(item: AccountOption, isDarkMode: Boolean) {
     ListItem(
         colors = ListItemDefaults.colors(
-            containerColor = Color.White
+            containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White
         ),
         headlineContent = { Text(item.title, fontWeight = FontWeight(weight = 600)) },
         leadingContent = {
@@ -141,11 +140,11 @@ fun UserInformation() {
 @Composable
 fun DarkModeButton(isDarkMode: Boolean, onChange: (Boolean) -> Unit) {
     ListItem(colors = ListItemDefaults.colors(
-        containerColor = Color.White
+        containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White
     ), headlineContent = {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Text(text = stringResource(id = R.string.dark_mode), fontWeight = FontWeight(weight = 500), modifier = Modifier.padding(start = 40.dp))
-            Switch(checked = isDarkMode, onCheckedChange = { onChange(it) }) // Usa el cambio del Switch
+            Switch(checked = isDarkMode, onCheckedChange = { onChange(it) })
         }
     })
 }

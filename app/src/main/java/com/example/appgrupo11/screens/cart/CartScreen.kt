@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreen(navController: NavController) {
+fun CartScreen(navController: NavController, isDarkMode: Boolean) {
     val cartViewModel: CartViewModel = viewModel()
     val totalAmount by cartViewModel.totalAmount
 
@@ -98,7 +98,7 @@ fun CartScreen(navController: NavController) {
             sheetState = sheetState,
 
             ) {
-            CheckoutContent(totalAmount = totalAmount, navController = navController)
+            CheckoutContent(totalAmount = totalAmount, navController = navController, isDarkMode = isDarkMode)
         }
     }
 }
@@ -209,11 +209,11 @@ fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
 }
 
 @Composable
-fun CheckoutContent(totalAmount: Double, navController: NavController) {
+fun CheckoutContent(totalAmount: Double, navController: NavController, isDarkMode: Boolean) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White)
+            .background(if(isDarkMode) AppColors.DarkViolet else Color.White)
             .padding(16.dp)
     ) {
         Text("Checkout", fontSize = 20.sp, modifier = Modifier.padding(bottom = 16.dp))

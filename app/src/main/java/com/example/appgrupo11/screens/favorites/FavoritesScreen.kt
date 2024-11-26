@@ -36,7 +36,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.appgrupo11.composables.ErrorDialog
 
 @Composable
-fun FavoritesScreen(navController: NavController) {
+fun FavoritesScreen(navController: NavController, isDarkMode: Boolean) {
     var showDialog by remember { mutableStateOf(false) }
     val favoritesViewModel: FavoritesViewModel = viewModel()
     val products by favoritesViewModel.favoritesItems.collectAsState(initial = emptyList())
@@ -59,7 +59,7 @@ fun FavoritesScreen(navController: NavController) {
         PrimaryButton("Add All To Cart", onClick = { showDialog = true }
         )
         if(showDialog) {
-            ErrorDialog(onDismiss = { showDialog = false }, navController = navController)
+            ErrorDialog(onDismiss = { showDialog = false }, navController = navController, isDarkMode = isDarkMode)
         }
 
     }

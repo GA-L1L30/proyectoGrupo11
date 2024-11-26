@@ -1,4 +1,4 @@
-package com.example.appgrupo11.Navigation
+package com.example.appgrupo11.navigation
 
 import LocationScreen
 
@@ -25,20 +25,19 @@ fun NavHostSetup(
     hasSeenOnboarding: Boolean,
     onLoginSuccess: () -> Unit,
     onOnboardingComplete: () -> Unit,
-    onNavigationItemSelected: (Int) -> Unit, // Añadir este parámetro para manejar la selección
-    isDarkMode: Boolean,  // Recibir el parámetro de modo oscuro
-    onToggleDarkMode: (Boolean) -> Unit // Función para alternar el modo oscuro
+    onNavigationItemSelected: (Int) -> Unit,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
 ) {
-    val navController = rememberNavController() // Controlador de navegación
+    val navController = rememberNavController()
 
-    // Controla la navegación inicial según el estado
     LaunchedEffect(Unit) {
         if (!hasSeenOnboarding) {
-            navController.navigate("onboarding") // Si no ha visto la pantalla de onboarding
+            navController.navigate("onboarding")
         } else if (!isUserLoggedIn) {
-            navController.navigate("signin") // Si no está autenticado
+            navController.navigate("signin")
         } else {
-            navController.navigate("home") // Pantalla principal
+            navController.navigate("home")
         }
     }
 
@@ -54,7 +53,7 @@ fun NavHostSetup(
                 onLoginSuccess = {
                     onLoginSuccess()
                     navController.navigate("home") {
-                        popUpTo("signin") { inclusive = true } // Remover SignIn de la pila de navegación
+                        popUpTo("signin") { inclusive = true }
                     }
                 },
                 onNavigateToSignUp = {
@@ -66,7 +65,7 @@ fun NavHostSetup(
             SignUpScreen(
                 onSignUpSuccess = {
                     navController.navigate("location") {
-                        popUpTo("signup") { inclusive = true } // Remover SignUp de la pila de navegación
+                        popUpTo("signup") { inclusive = true }
                     }
                 },
                 onNavigateToSignIn = {
@@ -79,11 +78,11 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    HomeScreen(navController = navController)
+                    HomeScreen(navController = navController, isDarkMode = isDarkMode)
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("findProducts") {
@@ -94,8 +93,8 @@ fun NavHostSetup(
                     FindProductsScreen(navController = navController)
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("cart") {
@@ -103,11 +102,11 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    CartScreen(navController = navController)
+                    CartScreen(navController = navController, isDarkMode)
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("favorites") {
@@ -115,11 +114,11 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    FavoritesScreen(navController = navController)
+                    FavoritesScreen(navController = navController, isDarkMode)
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("account") {
@@ -128,26 +127,26 @@ fun NavHostSetup(
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
                     AccountScreen(
-                        isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                        onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                        isDarkMode = isDarkMode,
+                        onToggleDarkMode = onToggleDarkMode
                     )
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("productDetail") {
             ProductDetailScreen(
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                isDarkMode = isDarkMode,
                 onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("orderAccepted") {
             OfferAcceptedScreen(
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
+                isDarkMode = isDarkMode,
                 onToggleDarkMode = onToggleDarkMode
             )
         }
@@ -156,18 +155,18 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    SearchScreen(navController = navController)
+                    SearchScreen(navController = navController, isDarkMode = isDarkMode)
                 },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("productsForCategory") {
             CategoryScreen(
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasar el parámetro isDarkMode
-                onToggleDarkMode = onToggleDarkMode // Pasar la función onToggleDarkMode)
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("location") {

@@ -21,7 +21,7 @@ import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.composables.Search
 
 @Composable
-fun SearchScreen(navController: NavHostController) {
+fun SearchScreen(navController: NavHostController, isDarkMode: Boolean) {
     val viewModel: SearchViewModel = viewModel()
     val searchQuery by viewModel.searchQuery
     val searchProducts by viewModel.searchProducts.collectAsState()
@@ -60,7 +60,8 @@ fun SearchScreen(navController: NavHostController) {
                     title = product.title,
                     description = product.description,
                     price = product.price,
-                    navController = navController
+                    navController = navController,
+                     isDarkMode,
                 )
             }
         }

@@ -51,7 +51,7 @@ fun CategoryScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .background(Color.White)
+                .background(if(isDarkMode) Color.Black else Color.White)
                 .fillMaxSize()
         ) {
             LazyVerticalGrid(
@@ -69,7 +69,8 @@ fun CategoryScreen(
                         title = product.title,
                         description = product.description,
                         price = product.price,
-                        navController = navController
+                        navController = navController,
+                        isDarkMode = isDarkMode
                     )
                 }
             }

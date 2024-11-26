@@ -20,23 +20,24 @@ fun LayoutScreen(
     onNavigationItemSelected: (Int) -> Unit,
     childrenComposable: @Composable () -> Unit,
     navController: NavHostController,
-    isDarkMode: Boolean, // Parámetro para el modo oscuro
-    onToggleDarkMode: (Boolean) -> Unit // Función para alternar el modo oscuro
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
 ) {
     Scaffold(
         topBar = {
             CustomTopBar(
                 title = getNavigationList()[selectedNavigationItemIndex].title,
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasamos el estado del modo oscuro
-                onToggleDarkMode = onToggleDarkMode // Pasamos la función para alternar el modo oscuro
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         },
         bottomBar = {
             CustomNavigationBar(
                 selectedNavigationItem = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
-                navController = navController
+                navController = navController,
+                isDarkMode = isDarkMode
             )
         },
         modifier = Modifier.fillMaxSize()
@@ -46,7 +47,7 @@ fun LayoutScreen(
                 .padding(innerPadding)
                 .background(
                     if (isDarkMode) MaterialTheme.colorScheme.background else Color.White
-                ) // Cambia el fondo según el modo
+                )
         ) {
             childrenComposable()
         }

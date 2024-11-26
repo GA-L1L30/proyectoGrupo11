@@ -27,7 +27,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 
 @Composable
-fun ErrorDialog(onDismiss: () -> Unit, navController: NavController) {
+fun ErrorDialog(onDismiss: () -> Unit, navController: NavController, isDarkMode: Boolean) {
     AlertDialog(
         onDismissRequest = { onDismiss() },
         title = {

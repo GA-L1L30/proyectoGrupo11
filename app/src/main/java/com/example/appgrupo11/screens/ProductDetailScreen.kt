@@ -61,26 +61,26 @@ fun ProductDetailScreen(
                 modifier = Modifier.size(20.dp),
             ) },
                 navController = navController,
-                isDarkMode = isDarkMode, // Pasamos el estado del modo oscuro
-                onToggleDarkMode = onToggleDarkMode // Pasamos la función para alternar el modo oscuro
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .background(Color.White)
+                .background(if (isDarkMode) Color.Black else Color.White)
                 .fillMaxSize(),
         ) {
-            ProductDetailContent()
+            ProductDetailContent(isDarkMode)
         }
     }
 }
 
 @Composable
-fun ProductDetailContent() {
+fun ProductDetailContent(isDarkMode: Boolean) {
     Column {
-        ProductImageContainer()
+        ProductImageContainer(isDarkMode)
         ProductTitle()
         ProductPriceContainer()
         ProductDescription()
@@ -91,11 +91,11 @@ fun ProductDetailContent() {
 }
 
 @Composable
-fun ProductImageContainer() {
+fun ProductImageContainer(isDarkMode: Boolean) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .background(
-            color = SecondaryColorButton,
+            color = if(isDarkMode) Color.Black else SecondaryColorButton,
             shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp)
         )
         .padding(top = 10.dp, start = 25.dp, end = 25.dp, bottom = 25.dp)
