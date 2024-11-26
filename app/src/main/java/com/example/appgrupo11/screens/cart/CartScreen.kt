@@ -37,20 +37,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.navigation.NavController
-import com.example.appgrupo11.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.rememberAsyncImagePainter
 import com.example.appgrupo11.data.Product
 import com.example.appgrupo11.ui.theme.AppColors
 import kotlinx.coroutines.launch
-import androidx.compose.foundation.lazy.items
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +53,6 @@ fun CartScreen(navController: NavController) {
     val cartViewModel: CartViewModel = viewModel()
     val totalAmount by cartViewModel.totalAmount
 
-    //Para controlar si el BottomSheet esta desplegado o no
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val coroutineScope = rememberCoroutineScope()
 
@@ -94,7 +87,6 @@ fun CartScreen(navController: NavController) {
     }
 
 
-    // ModalBottomSheet para mostrar el detalle de checkout
     if(showBottomSheet) {
         ModalBottomSheet(
             onDismissRequest = {
@@ -113,7 +105,6 @@ fun CartScreen(navController: NavController) {
 
 @Composable
 fun Divider(modifier: Modifier) {
-    //Divisor de elementos del carrito
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -131,7 +122,6 @@ fun QuantitySelector(
     onDecrease: () -> Unit
 ){
 
-    //Controles de cantidad y precio
     Row(
         verticalAlignment =  androidx.compose.ui.Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -144,7 +134,6 @@ fun QuantitySelector(
             )
         }
 
-        //Mostrar cantidad actual
         Text(text = "$quantity", fontSize = 16.sp, modifier = Modifier.padding(horizontal = 8.dp))
 
         IconButton(onClick = {
@@ -168,7 +157,7 @@ fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
             .fillMaxWidth()
             .padding(vertical =  8.dp)
     ){
-        //Imagen del Producto
+
         Image(
             painter = rememberAsyncImagePainter(product.imageUrl),
             contentDescription = product.title,
@@ -180,7 +169,7 @@ fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
         )
 
         Column(modifier = Modifier.weight(1f)) {
-            //Nombre del producto
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -196,7 +185,6 @@ fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
             }
 
 
-            //Descripcion
             Text(text = product.description, fontSize = 14.sp,color = Color.Gray)
 
             Box(modifier = Modifier.fillMaxWidth().height(20.dp)){
@@ -209,7 +197,6 @@ fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
                 )
             }
 
-            //Control de cantidad
             QuantitySelector(
                 quantity = product.quantity,
                 onIncrease = {cartViewModel.updateQuantity(item,  product.quantity +1 ) },
