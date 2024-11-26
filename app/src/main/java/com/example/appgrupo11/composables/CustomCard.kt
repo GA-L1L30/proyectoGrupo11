@@ -35,14 +35,14 @@ import com.example.appgrupo11.ui.theme.AppColors
 import coil.compose.AsyncImage
 
 
-//Anteriormente este codigo estaba en HomeScreen y se copio y pego aca porque se usa en mas pantallas
 @Composable
 fun CustomCard(
     imageUrl: String,
     title: String,
     description: String,
     price: Double,
-    navController: NavController
+    navController: NavController,
+    isDarkMode: Boolean
 ){
     Card (
         modifier = Modifier
@@ -51,7 +51,7 @@ fun CustomCard(
             .clip(RoundedCornerShape(16.dp))
             .border(1.dp, AppColors.LightGray, RoundedCornerShape(16.dp))
             .shadow(8.dp, RoundedCornerShape(16.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White),
         elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(

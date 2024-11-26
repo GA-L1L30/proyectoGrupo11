@@ -17,16 +17,16 @@ import com.example.appgrupo11.ui.theme.AppColors
 
 
 @Composable
-fun CustomNavigationBar(selectedNavigationItem: Int,onNavigationItemSelected: (Int) -> Unit, navigationList: List<NavigationItem> = getNavigationList(), navController: NavController) {
-    NavigationBar(containerColor = Color.White ,modifier = Modifier.graphicsLayer {
+fun CustomNavigationBar(selectedNavigationItem: Int,onNavigationItemSelected: (Int) -> Unit, navigationList: List<NavigationItem> = getNavigationList(), navController: NavController, isDarkMode: Boolean) {
+    NavigationBar(containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White ,modifier = Modifier.graphicsLayer {
         clip = true
         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
         shadowElevation = 20f
     }) {
         navigationList.forEachIndexed { index, item ->
             NavigationBarItem(
-                label = { Text(text = item.label, color = if(selectedNavigationItem == index) AppColors.LightGreen else Color.Black) },
-                icon = { item.icon(if (selectedNavigationItem == index) AppColors.LightGreen else Color.Black) }
+                label = { Text(text = item.label, color = if(selectedNavigationItem == index) AppColors.LightGreen else if(isDarkMode) Color.White else Color.Black) },
+                icon = { item.icon(if (selectedNavigationItem == index) AppColors.LightGreen else if (isDarkMode) Color.White else Color.Black) }
                 ,
                 onClick = {
                     onNavigationItemSelected(index)

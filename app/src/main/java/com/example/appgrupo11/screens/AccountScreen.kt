@@ -39,12 +39,17 @@ import com.example.appgrupo11.ui.theme.AppColors
 import com.example.appgrupo11.ui.theme.LightGrayEmail
 
 @Composable
-fun AccountScreen(accountOptions: List<AccountOption> = getAccountOptions()) {
+fun AccountScreen(
+    accountOptions: List<AccountOption> = getAccountOptions(),
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+){
+
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(vertical = 20.dp), verticalArrangement = Arrangement.SpaceBetween) {
         UserInformation()
-        AccountOptionList(accountOptions)
+        AccountOptionList(accountOptions, isDarkMode, onToggleDarkMode)
         Box(modifier = Modifier.padding(10.dp)) {
             GrayButton(
                 text = "Log Out",
@@ -56,33 +61,37 @@ fun AccountScreen(accountOptions: List<AccountOption> = getAccountOptions()) {
                     )
                 },
                 onClick = {},
-                textColor = AppColors.LightGreen
+                textColor = AppColors.LightGreen,
+                containerColor = if(isDarkMode) AppColors.DarkViolet else AppColors.Gray
             )
         }
     }
-
-
 }
 
 @Composable
-fun AccountOptionList(options: List<AccountOption>) {
+fun AccountOptionList(
+    options: List<AccountOption>,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+) {
     Column {
         options.forEachIndexed { index, accountOption ->
             if (index == 0) {
                 HorizontalDivider()
             }
-            AccountOptionItem(accountOption)
+            AccountOptionItem(accountOption, isDarkMode)
         }
-        DarkModeButton(onChange = {})
+        // Usar el estado y la función de cambio para DarkModeButton
+        DarkModeButton(isDarkMode = isDarkMode, onChange = onToggleDarkMode)
         HorizontalDivider()
     }
 }
 
 @Composable
-fun AccountOptionItem(item: AccountOption) {
+fun AccountOptionItem(item: AccountOption, isDarkMode: Boolean) {
     ListItem(
         colors = ListItemDefaults.colors(
-            containerColor = Color.White
+            containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White
         ),
         headlineContent = { Text(item.title, fontWeight = FontWeight(weight = 600)) },
         leadingContent = {
@@ -129,15 +138,13 @@ fun UserInformation() {
 }
 
 @Composable
-fun DarkModeButton(onChange: () -> Unit) {
+fun DarkModeButton(isDarkMode: Boolean, onChange: (Boolean) -> Unit) {
     ListItem(colors = ListItemDefaults.colors(
-        containerColor = Color.White
-    ),headlineContent = {
+        containerColor = if(isDarkMode) AppColors.DarkViolet else Color.White
+    ), headlineContent = {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Text(text = stringResource(id = R.string.dark_mode), fontWeight = FontWeight(weight = 500), modifier = Modifier.padding(start = 40.dp))
-            Switch(checked = false, onCheckedChange = { onChange() })
+            Switch(checked = isDarkMode, onCheckedChange = { onChange(it) })
         }
     })
-
-
 }

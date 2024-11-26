@@ -48,7 +48,11 @@ import com.example.appgrupo11.data.getProductDescriptionList
 import com.example.appgrupo11.ui.theme.SecondaryColorButton
 
 @Composable
-fun ProductDetailScreen(navController: NavController) {
+fun ProductDetailScreen(
+    navController: NavController,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+){
     Scaffold(
         topBar = {
             CustomTopBar(title = "Product Detail", containerColor = Color.White, navigationIcon = { Icon(
@@ -56,25 +60,27 @@ fun ProductDetailScreen(navController: NavController) {
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
             ) },
-                navController = navController
+                navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .background(Color.White)
+                .background(if (isDarkMode) Color.Black else Color.White)
                 .fillMaxSize(),
         ) {
-            ProductDetailContent()
+            ProductDetailContent(isDarkMode)
         }
     }
 }
 
 @Composable
-fun ProductDetailContent() {
+fun ProductDetailContent(isDarkMode: Boolean) {
     Column {
-        ProductImageContainer()
+        ProductImageContainer(isDarkMode)
         ProductTitle()
         ProductPriceContainer()
         ProductDescription()
@@ -85,11 +91,11 @@ fun ProductDetailContent() {
 }
 
 @Composable
-fun ProductImageContainer() {
+fun ProductImageContainer(isDarkMode: Boolean) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .background(
-            color = SecondaryColorButton,
+            color = if(isDarkMode) Color.Black else SecondaryColorButton,
             shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp)
         )
         .padding(top = 10.dp, start = 25.dp, end = 25.dp, bottom = 25.dp)
