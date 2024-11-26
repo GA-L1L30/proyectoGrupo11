@@ -27,7 +27,11 @@ import com.example.appgrupo11.composables.PrimaryButton
 import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
-fun OfferAcceptedScreen(navController: NavController){
+fun OfferAcceptedScreen(
+    navController: NavController,
+    isDarkMode: Boolean,  // Recibir el parámetro de modo oscuro
+    onToggleDarkMode: (Boolean) -> Unit // Función para alternar el modo oscuro
+){
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -65,13 +69,10 @@ fun OfferAcceptedScreen(navController: NavController){
             textAlign = TextAlign.Center
         )
 
-
         PrimaryButton(text = "Track Order"){}
 
         Spacer(modifier = Modifier.height(10.dp))
 
         GrayButton(text = "Back to home", leftIcon = {}, onClick = {navController.navigate("home")}, textColor = Color.Black)
-
     }
-
 }

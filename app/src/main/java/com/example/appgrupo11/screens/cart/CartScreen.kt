@@ -37,14 +37,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.navigation.NavController
-import com.example.appgrupo11.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import coil.compose.rememberAsyncImagePainter
 import com.example.appgrupo11.data.Product
 import com.example.appgrupo11.ui.theme.AppColors
 import kotlinx.coroutines.launch
@@ -52,11 +49,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreen(navController: NavController) {
+fun CartScreen(navController: NavController, isDarkMode: Boolean) {
     val cartViewModel: CartViewModel = viewModel()
     val totalAmount by cartViewModel.totalAmount
 
-    //Para controlar si el BottomSheet esta desplegado o no
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val coroutineScope = rememberCoroutineScope()
 
@@ -85,12 +81,12 @@ fun CartScreen(navController: NavController) {
                 coroutineScope.launch {
                     showBottomSheet = true
                     sheetState.show()
+                    cartViewModel.saveOrderToCheckout()
                 }
         })
     }
 
 
-    // ModalBottomSheet para mostrar el detalle de checkout
     if(showBottomSheet) {
         ModalBottomSheet(
             onDismissRequest = {
@@ -102,14 +98,13 @@ fun CartScreen(navController: NavController) {
             sheetState = sheetState,
 
             ) {
-            CheckoutContent(totalAmount = totalAmount, navController = navController)
+            CheckoutContent(totalAmount = totalAmount, navController = navController, isDarkMode = isDarkMode)
         }
     }
 }
 
 @Composable
 fun Divider(modifier: Modifier) {
-    //Divisor de elementos del carrito
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -127,7 +122,6 @@ fun QuantitySelector(
     onDecrease: () -> Unit
 ){
 
-    //Controles de cantidad y precio
     Row(
         verticalAlignment =  androidx.compose.ui.Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -140,7 +134,6 @@ fun QuantitySelector(
             )
         }
 
-        //Mostrar cantidad actual
         Text(text = "$quantity", fontSize = 16.sp, modifier = Modifier.padding(horizontal = 8.dp))
 
         IconButton(onClick = {
@@ -157,30 +150,31 @@ fun QuantitySelector(
 
 
 @Composable
-fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
+fun CartItemRow(item: Pair<String,Product>, cartViewModel: CartViewModel) {
+    val product = item.second
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical =  8.dp)
     ){
-        //Imagen del Producto
+
         Image(
-            painter = painterResource(id = item.imageRes),
-            contentDescription = item.title,
+            painter = rememberAsyncImagePainter(product.imageUrl),
+            contentDescription = product.title,
             modifier = Modifier
-                .size(80.dp)
+                .size(100.dp)
                 .padding(end = 16.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Fit
 
         )
 
         Column(modifier = Modifier.weight(1f)) {
-            //Nombre del producto
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
-                Text(text = item.title, fontSize = 18.sp)
+                Text(text = product.title, fontSize = 18.sp)
                 Icon(
                     imageVector = Icons.Filled.Close,
                     contentDescription = "Close",
@@ -191,12 +185,11 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
             }
 
 
-            //Descripcion
-            Text(text = item.description, fontSize = 14.sp,color = Color.Gray)
+            Text(text = product.description, fontSize = 14.sp,color = Color.Gray)
 
             Box(modifier = Modifier.fillMaxWidth().height(20.dp)){
                 Text(
-                    text =  "$${item.price}",
+                    text =  "$${product.price}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(end = 10.dp).align(Alignment.CenterEnd),
@@ -204,11 +197,10 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
                 )
             }
 
-            //Control de cantidad
             QuantitySelector(
-                quantity = item.quantity,
-                onIncrease = {cartViewModel.updateQuantity(item, item.quantity +1 ) },
-                onDecrease = {cartViewModel.updateQuantity(item, item.quantity -1 ) },
+                quantity = product.quantity,
+                onIncrease = {cartViewModel.updateQuantity(item,  product.quantity +1 ) },
+                onDecrease = {cartViewModel.updateQuantity(item, product.quantity -1 ) },
             )
 
 
@@ -217,11 +209,11 @@ fun CartItemRow(item: Product, cartViewModel: CartViewModel) {
 }
 
 @Composable
-fun CheckoutContent(totalAmount: Double, navController: NavController) {
+fun CheckoutContent(totalAmount: Double, navController: NavController, isDarkMode: Boolean) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White)
+            .background(if(isDarkMode) AppColors.DarkViolet else Color.White)
             .padding(16.dp)
     ) {
         Text("Checkout", fontSize = 20.sp, modifier = Modifier.padding(bottom = 16.dp))

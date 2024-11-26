@@ -10,6 +10,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,8 +21,10 @@ import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.composables.Search
 
 @Composable
-fun SearchScreen(navController: NavHostController) {
+fun SearchScreen(navController: NavHostController, isDarkMode: Boolean) {
     val viewModel: SearchViewModel = viewModel()
+    val searchQuery by viewModel.searchQuery
+    val searchProducts by viewModel.searchProducts.collectAsState()
 
 
     Column(
@@ -31,7 +35,12 @@ fun SearchScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
-        Search("Egg", {})
+        Search(
+            query = searchQuery,
+            onQueryChange = { query -> viewModel.updateSearchQuery(query) },
+            placeholderText = "Search Store",
+            onTrailingIconClick = { }
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -44,14 +53,15 @@ fun SearchScreen(navController: NavHostController) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            items(viewModel.searchProducts.value){
+            items(searchProducts){
                 product ->
                 CustomCard(
-                    imageRes = product.imageRes,
+                    imageUrl = product.imageUrl,
                     title = product.title,
                     description = product.description,
                     price = product.price,
-                    navController = navController
+                    navController = navController,
+                     isDarkMode,
                 )
             }
         }

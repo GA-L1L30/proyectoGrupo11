@@ -24,19 +24,39 @@ fun DefaultNavigationIcon(onClick: () -> Unit = {}) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTopBar(title: String, containerColor: Color = LightGray, navigationIcon: @Composable () -> Unit = { DefaultNavigationIcon() }, navController: NavController) {
+fun CustomTopBar(
+    title: String,
+    containerColor: Color = LightGray,
+    navigationIcon: @Composable () -> Unit = { DefaultNavigationIcon() },
+    navController: NavController,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+) {
+    val appBarColor = if (isDarkMode) {
+        Color.Black
+    } else {
+        containerColor
+    }
+
+    val textColor = if (isDarkMode) {
+        Color.White
+    } else {
+        Color.Black
+    }
+
     CenterAlignedTopAppBar(
-        title = { Box(contentAlignment = Alignment.Center) {
-            Text(text = title)
-        } },
+        title = {
+            Box(contentAlignment = Alignment.Center) {
+                Text(text = title, color = textColor)
+            }
+        },
         navigationIcon = {
             IconButton(onClick = { navController.navigate("home") }) {
                 navigationIcon()
             }
         },
         colors = topAppBarColors(
-            containerColor = containerColor,
+            containerColor = appBarColor,
         ),
-
     )
 }

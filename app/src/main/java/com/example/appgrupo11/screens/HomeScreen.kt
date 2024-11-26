@@ -38,7 +38,7 @@ import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.ui.theme.AppColors
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel(), navController: NavController) {
+fun HomeScreen(viewModel: HomeViewModel = viewModel(), navController: NavController, isDarkMode: Boolean) {
     val uiState by viewModel.uiState.collectAsState()
 
     Column(
@@ -71,13 +71,13 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), navController: NavControl
 
                     item {
                         Items(text = "Exclusive Offer")
-                        ExclusiveOffer(products = successState.exclusiveOffers, navController)
+                        ExclusiveOffer(products = successState.exclusiveOffers, navController, isDarkMode)
 
                     }
 
                     item {
                         Items(text = "Best Selling")
-                        BestSelling(products = successState.bestSelling, navController)
+                        BestSelling(products = successState.bestSelling, navController, isDarkMode)
                     }
                 }
 
@@ -194,7 +194,7 @@ fun Items(
 
 
 @Composable
-fun ExclusiveOffer(products: List<Product>, navController: NavController){
+fun ExclusiveOffer(products: List<Product>, navController: NavController, isDarkMode: Boolean){
     Log.d("testGonza", navController.toString())
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
@@ -205,18 +205,19 @@ fun ExclusiveOffer(products: List<Product>, navController: NavController){
         items(products.size){ i->
             val product = products[i]
             CustomCard(
-               imageRes = product.imageRes,
+               imageUrl = product.imageUrl,
                 title =  product.title,
                 description = product.description,
                 price = product.price,
-                navController
+                navController,
+                isDarkMode
             )
         }
     }
 }
 
 @Composable
-fun BestSelling(products: List<Product>, navController: NavController) {
+fun BestSelling(products: List<Product>, navController: NavController, isDarkMode: Boolean) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = Modifier
@@ -226,11 +227,12 @@ fun BestSelling(products: List<Product>, navController: NavController) {
         items(products.size) { i ->
             val product = products[i]
             CustomCard(
-                imageRes = product.imageRes,
+                imageUrl = product.imageUrl,
                 title = product.title,
                 description = product.description,
                 price = product.price,
-                navController = navController
+                navController = navController,
+                isDarkMode,
             )
         }
     }

@@ -1,0 +1,589 @@
+[33mcommit 2f0d0f1af2cea11198ffc3aa26a65e2951ad29f7[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Merge: 09c7d85 a44d450
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Nov 25 12:05:48 2024 -0300
+
+    Logica Busqueda
+
+[33mcommit a44d450f2156d77e2ce420b240a3c3211f638109[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Nov 25 11:56:58 2024 -0300
+
+    Logica Buscador
+
+[33mcommit 09c7d85bfd0bf4e63e985a920ec926f72fa940ec[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sun Nov 24 23:45:52 2024 -0300
+
+    Guardar resultado de compra final en tabla checkout
+
+[33mcommit 35f012a7de4788403e619c23336c5512a880980e[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sun Nov 24 23:45:52 2024 -0300
+
+    Guardar resultado de compra final en tabla checkout
+
+[33mcommit eb6c699f33399b0efe95f66b2a54190e4bfbb506[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Sun Nov 24 22:46:42 2024 -0300
+
+    ajuste  en la pantalla de favoritos para que levante los productos de firebase
+
+[33mcommit 00baaa86e6a59074d692d6757e803b2b1e64ce5c[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Sun Nov 24 22:17:48 2024 -0300
+
+    ajustes en los viewmodel de Carrito, Categoria y Home para que consuma de la base creada en firebase
+
+[33mcommit 75d1785643947a689615ecee83e20aefdb75483a[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Sun Nov 24 10:39:54 2024 -0300
+
+    creando conexion al proyecto de firebase
+
+[33mcommit de445c03cc3b3e940eeec172426ba27dd120f2dc[m
+Merge: 0426a7d 81751d1
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sat Nov 23 22:22:32 2024 -0300
+
+    Merge pull request #23 from GA-L1L30/arreglo-account-screen
+    
+    se arreglo la account screen
+
+[33mcommit 81751d127d665d4ad8cdac1e1f2a5068ed0d232b[m[33m ([m[1;31morigin/arreglo-account-screen[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sat Nov 23 22:22:01 2024 -0300
+
+    se eliminaron modulos que no se estan utilizando
+
+[33mcommit 4273bd111fe06277ebfb345912eec1ee82c44d21[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sat Nov 23 22:20:29 2024 -0300
+
+    se arreglo la account screen
+
+[33mcommit 0426a7db539f23f3e1f934c8dc7e471688c765f2[m
+Merge: d6dedc7 544f2ea
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sat Nov 23 21:35:53 2024 -0300
+
+    Merge pull request #22 from GA-L1L30/master
+    
+    Copiar cambios de master a develop
+
+[33mcommit 544f2eaba85465e063a25b1e7dafd63d6731b890[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 17:34:54 2024 -0300
+
+    Update README.md
+
+[33mcommit 2379b2fc935ab68c009094d0ce12e3afbb11b9d6[m
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 17:26:34 2024 -0300
+
+    Update README.md
+
+[33mcommit 8a32cebd4a3f8fbdef563c9fac3bf4ce89fa9146[m
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 17:17:47 2024 -0300
+
+    Create README.md
+
+[33mcommit 999a5740e2fe2c71d0f5c8681d0286f725bf40aa[m[33m ([m[1;32mmaster[m[33m)[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 15 16:39:29 2024 -0300
+
+    dropdown changes
+
+[33mcommit 906f91f0e090ef0eb8634a42f10ec63edb629e93[m
+Merge: a6850d2 7518f0f
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 01:27:54 2024 -0300
+
+    Merge pull request #21 from GA-L1L30/agregar_navegacion_a_category_screen
+    
+    se agrego la navegacion a la categoria en particular
+
+[33mcommit 7518f0fd95a55d584a29ecb76ef30da635923e4a[m[33m ([m[1;31morigin/agregar_navegacion_a_category_screen[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Tue Oct 15 01:27:20 2024 -0300
+
+    se agrego la navegacion a la categoria en particular
+
+[33mcommit a6850d224a270a4cf0b18e335665bd2446da18ae[m
+Merge: 4e2c27f ec611c8
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 01:09:45 2024 -0300
+
+    Merge pull request #20 from GA-L1L30/arreglo_problemas_navegacion_search_my_cart
+    
+    Se agregaron navegaciones en MyCartScreen y SearchScreen
+
+[33mcommit ec611c8a71ee554d7716137751948e4833adbddb[m[33m ([m[1;31morigin/arreglo_problemas_navegacion_search_my_cart[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Tue Oct 15 01:08:34 2024 -0300
+
+    se volvieron a agregar navegaciones que se perdieron con el merge
+
+[33mcommit 4e2c27f1c037319f9e24fbbac180e1fb0612d630[m
+Merge: d67f300 f97e563
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 01:00:16 2024 -0300
+
+    Merge pull request #19 from GA-L1L30/unir_mi_navController_con_el_nav_host_setup
+    
+    Unir mi nav controller con el nav host setup
+
+[33mcommit f97e563ae26e211d8b8ee51144cbc3c9a091638f[m[33m ([m[1;31morigin/unir_mi_navController_con_el_nav_host_setup[m[33m)[m
+Merge: a108b3c d67f300
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Tue Oct 15 00:59:17 2024 -0300
+
+    se arreglaron los conflictos
+
+[33mcommit a108b3cc5c01f88230cb9228ada1095e43274c4e[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Tue Oct 15 00:47:56 2024 -0300
+
+    se volvio a poner el login como primer pantalla
+
+[33mcommit d67f300b377e02c83d7c4912d7a7eaa96c9e2c4e[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 15 00:32:26 2024 -0300
+
+    location screen and arquitecture
+
+[33mcommit d6dedc7a2b9d7ce6754ad9d43f56e58821f34b94[m
+Merge: d0767b6 74ae706
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 00:05:37 2024 -0300
+
+    Merge pull request #17 from GA-L1L30/nav_controller
+    
+    nav controller casi listo
+
+[33mcommit 74ae706fc6c9a9e672fa59cab383dd48fdc172e9[m[33m ([m[1;31morigin/nav_controller[m[33m)[m
+Merge: 227a4f8 d0767b6
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Tue Oct 15 00:05:23 2024 -0300
+
+    Merge branch 'develop' into nav_controller
+
+[33mcommit 227a4f8ab2a435c62ee24fca839c16ae3850ec69[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Mon Oct 14 23:57:09 2024 -0300
+
+    nav controller casi listo
+
+[33mcommit 5c01fa4fd1c935f9b765030186620d2d86e97384[m
+Merge: 1497afd d0767b6
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Mon Oct 14 23:33:33 2024 -0300
+
+    Merge pull request #16 from GA-L1L30/develop
+    
+    Develop
+
+[33mcommit 1497afd11cb107a15e57dc5452acf1c6f1872e3d[m
+Merge: 06b0a37 fa6ec34
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Mon Oct 14 23:32:40 2024 -0300
+
+    Merge pull request #15 from GA-L1L30/login_ruteo_y_scaffolding
+    
+    Login ruteo y scaffolding
+
+[33mcommit fa6ec3463a32dd590aba8340e8150d20e0d7a6e2[m[33m ([m[1;31morigin/login_ruteo_y_scaffolding[m[33m, [m[1;32mlogin_ruteo_y_scaffolding[m[33m)[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Mon Oct 14 23:32:06 2024 -0300
+
+    completo falta solo ubicacion
+
+[33mcommit d0767b654e36f39b1ed216d12da8eac7afd57d25[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 23:14:17 2024 -0300
+
+    funcionalidad del carrito suma, resta de items y calculo del total
+
+[33mcommit e5a13b27f35fe4cf185211f5d493efb0ad49f695[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 22:50:48 2024 -0300
+
+    puliendo diseño de la pantalla del carrito
+
+[33mcommit c0f4815ba7c571e2a0735e8ad3b5a50a2a9d548d[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 22:04:35 2024 -0300
+
+    Desarrollo de Corroutine y Checkout
+
+[33mcommit 981865f1ac1830c0aa37c7b6c995ce775abc7dd9[m
+Merge: 6bfdc8f 479ab0f
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 20:45:12 2024 -0300
+
+    Desarrollo de pantalla de favoritos
+
+[33mcommit 6bfdc8f633acfdc9baabf776f6e8361703410972[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 20:42:13 2024 -0300
+
+    Desarrollo de pantalla de favoritos
+
+[33mcommit 479ab0fb2f62f84253395ddb1757379daabf03f5[m
+Merge: 98cfb04 940965e
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Mon Oct 14 20:23:51 2024 -0300
+
+    Merge pull request #14 from GA-L1L30/feature/splashScreenAndNavigation
+    
+    Feature/splash screen and navigation
+
+[33mcommit 940965eff24d3f8cb8968a8df2e5ac35b79dcfed[m[33m ([m[1;31morigin/feature/splashScreenAndNavigation[m[33m, [m[1;32mfeature/splashScreenAndNavigation[m[33m)[m
+Merge: fadc424 98cfb04
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Mon Oct 14 20:23:30 2024 -0300
+
+    final signin and signout
+
+[33mcommit 98cfb04364679aabb28b57daa8c693281fec4468[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Oct 14 19:47:52 2024 -0300
+
+    Precios a Double
+
+[33mcommit 4f42ad7c0850621d5ab78ab13ca55f0a6ccd8378[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Oct 14 19:31:02 2024 -0300
+
+    PopUp Filters
+
+[33mcommit 7793bcbf3602beb2bd01072da0e4fda41652b8de[m
+Merge: 0887658 d1cfd25
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Oct 14 18:27:24 2024 -0300
+
+    Resolucion conflictos PopUp
+
+[33mcommit d1cfd257c1132df41c9893bd28bc2a4156b503f8[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Oct 14 18:16:19 2024 -0300
+
+    PopUp Filters
+
+[33mcommit 088765800fbfae3f750eba4a7c2757f167392c92[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 17:56:25 2024 -0300
+
+    Desarrollo de pantalla My Card
+
+[33mcommit 3c6fcd23bbf4abb46419845d282a484e120003d1[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Mon Oct 14 16:00:14 2024 -0300
+
+    Subiendo cambios en pantalla Cart Screen
+
+[33mcommit 1c46dbd3d621e7e40bc96474520cf21c179d42bd[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Mon Oct 14 14:27:01 2024 -0300
+
+    Filters Pop Up falta
+
+[33mcommit fadc4247ab75094ee33a5fe2368f38a37dcdecca[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Sun Oct 13 21:46:52 2024 -0300
+
+    Falta terminar el login auth
+
+[33mcommit 2c7e724f003b8dd2aa05a8e4ba1d2b0f521c50ae[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sun Oct 13 21:35:00 2024 -0300
+
+    GrayButton Texto color Parametro
+
+[33mcommit 08732c95181492e59acef215ecc50804839e9edf[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sun Oct 13 20:56:12 2024 -0300
+
+    Detalles HomeScreen FindProducts OfferAccepted
+
+[33mcommit c8d295879b049c3d5cbcbce199c9f9444365a198[m
+Merge: d932281 2eeefdd
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sun Oct 13 20:40:02 2024 -0300
+
+    Merge pull request #13 from GA-L1L30/arreglo_padding_scaffold
+    
+    arreglo padding en el scaffold
+
+[33mcommit 2eeefddb4e5256c9e9340efa169a7291cadb39cd[m[33m ([m[1;31morigin/arreglo_padding_scaffold[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sun Oct 13 20:39:17 2024 -0300
+
+    arreglo padding en el scaffold
+
+[33mcommit d9322811a956b28e29dbd630b02c4a66e4f58abb[m
+Merge: 192736c f4eb310
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sun Oct 13 20:00:36 2024 -0300
+
+    Merge pull request #12 from GA-L1L30/arreglo_error_gonza
+    
+    Arreglo  mainActivity error gonza
+
+[33mcommit f4eb310bac6592afe75701517f801e9e94577173[m[33m ([m[1;31morigin/arreglo_error_gonza[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sun Oct 13 19:59:51 2024 -0300
+
+    habia borrado algo sin querer
+
+[33mcommit 192736cc8526037d9ce57ee9f3bd2b17dde58c28[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sun Oct 13 19:39:28 2024 -0300
+
+    se hizo que las account options sean clickeables
+
+[33mcommit a71d0bceb48390e87224457cc4d8e66a8a3bbb3d[m
+Merge: 43c81f5 4e0b4bd
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sun Oct 13 18:49:13 2024 -0300
+
+    Merge pull request #11 from GA-L1L30/arreglo_confcltos_gonza
+    
+    Arreglo confilctos gonza
+
+[33mcommit 4e0b4bde7b2c03c95aa99c77b45d9e88f21932d0[m[33m ([m[1;31morigin/arreglo_confcltos_gonza[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sun Oct 13 18:47:20 2024 -0300
+
+    se creo detalle y producto y se modifico cosas de la topbar y navbar
+
+[33mcommit 43c81f5e1e30f5bcc533a2b00fd0d91fc8f316f3[m
+Merge: c14341e 27d5711
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sun Oct 13 18:36:58 2024 -0300
+
+    Merge pull request #10 from GA-L1L30/creacion_detalle_producto
+    
+    se creo detalle y producto y se modifico cosas de la topbar y navbar
+
+[33mcommit 27d5711e66c08c875dda117f25362588056a67fd[m[33m ([m[1;31morigin/creacion_detalle_producto[m[33m)[m
+Merge: 1c34adf c14341e
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Sun Oct 13 18:36:30 2024 -0300
+
+    Merge branch 'develop' into creacion_detalle_producto
+
+[33mcommit 1c34adf549be932405946261f8b0717d7d10f842[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Sun Oct 13 18:16:20 2024 -0300
+
+    se creo detalle y producto y se modifico cosas de la topbar y navbar
+
+[33mcommit c14341e630dcb6fac4149bc0662c61ed27ff9987[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sat Oct 12 19:19:25 2024 -0300
+
+    Find Products VM correccion
+
+[33mcommit b72c56f4310273173aa22f908a18dc11c1dcf3b3[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sat Oct 12 18:17:45 2024 -0300
+
+    Colores en constantes
+
+[33mcommit b26e8e5a36b71c642799a9b9fc1d9ffbdce103be[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sat Oct 12 17:33:12 2024 -0300
+
+    Find Products Loading y Categoria Filtrada VM
+
+[33mcommit 7bf964e11890edcb761f50195ffc867c74bb3cc7[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Sat Oct 12 16:52:29 2024 -0300
+
+    Manejo Errores HomeScreen ViewModel
+
+[33mcommit 051ceff724d1815ebe00a29e08858c084470b4f7[m
+Merge: 08efe5d 9208527
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Sat Oct 12 14:23:05 2024 -0300
+
+    Merge pull request #9 from GA-L1L30/feature/splashScreenAndNavigation
+    
+    splash and navigation
+
+[33mcommit 9208527708e6df41d8cf78726954ab35a4cb5c8a[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Sat Oct 12 14:22:03 2024 -0300
+
+    splash and navigation
+
+[33mcommit 08efe5dd4982e876e8b9edcdcdc075227771889b[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Sat Oct 12 11:08:25 2024 -0300
+
+    Agregando arquitectura del carrito
+
+[33mcommit ffa8a5ea21c9e2f09660c59dff81874fd7ed027a[m
+Author: Yamileth Cabrera <cabrerayamileth@gmail.com>
+Date:   Sat Oct 12 10:12:26 2024 -0300
+
+    test
+
+[33mcommit 8ab77900aa11124b889d0ab0ea40b54b96a19ff0[m
+Merge: 782b010 338f5f2
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Thu Oct 10 20:42:55 2024 -0300
+
+    Merge pull request #8 from GA-L1L30/error-main-activiy-gonza
+    
+    Error main activity gonza
+
+[33mcommit 338f5f2f18a5b0d92785aafd8480fed7031e5ffe[m[33m ([m[1;31morigin/error-main-activiy-gonza[m[33m)[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Thu Oct 10 20:41:36 2024 -0300
+
+    Se agrego la topBar y la NavigationBar
+
+[33mcommit 782b010fa841cdc1d6d38360e2cc6d6ab43500a1[m
+Merge: b1a373a 3310a34
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Thu Oct 10 20:38:45 2024 -0300
+
+    Merge pull request #7 from GA-L1L30/creacion_topbar_y_navigationbar
+    
+    Se agrego la topBar y la NavigationBar
+
+[33mcommit 3310a3438d01b1778a55833c05819c63c68829b3[m[33m ([m[1;31morigin/creacion_topbar_y_navigationbar[m[33m)[m
+Merge: 77906bc b1a373a
+Author: GSosin <55698526+GSosin@users.noreply.github.com>
+Date:   Thu Oct 10 20:38:35 2024 -0300
+
+    Merge branch 'develop' into creacion_topbar_y_navigationbar
+
+[33mcommit 77906bc5221f932d5c6d2a7f93ce91ef290870ee[m
+Author: GonzaSosin <gonzalososin@gmail.com>
+Date:   Thu Oct 10 20:28:53 2024 -0300
+
+    Se agrego la topBar y la NavigationBar
+
+[33mcommit b1a373a24e5a5c565f1e95a98d88994c99a6241e[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 17:40:29 2024 -0300
+
+    OfferAccepted Screen
+
+[33mcommit a54e45e15ac4f9a4f4d6f137849d46726ef22057[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 14:59:58 2024 -0300
+
+    Botones Verde y Gris Composables
+
+[33mcommit 7f6cbbbc44a7ee190cc086582445097d273833bd[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 12:57:26 2024 -0300
+
+    SearchScreen con ViewModel
+
+[33mcommit 42f5f4ef497e370d73798bd59852414cd2325bad[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 11:09:50 2024 -0300
+
+    Codigo Search copiado a composables
+
+[33mcommit 8329c4b15de58f4a78cec7c1629625c6c392e763[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 10:00:27 2024 -0300
+
+    Products in Category Screen con ViewModel
+
+[33mcommit 840213ec9aecffa698fb1d8e9831d1385eeb82e4[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 08:46:04 2024 -0300
+
+    Codigo de CustomCard copiado a composables
+
+[33mcommit 1bcd23d19591601ac848182eb1bbbca5fac27569[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 08:43:25 2024 -0300
+
+    CustomCard a .composables
+
+[33mcommit f18a52a38f1da9e254de552cf5930c6a76ea370f[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 08:23:44 2024 -0300
+
+    ViewModel FindProducts
+
+[33mcommit 21bb6395041628cfa393f499f7cbf176dab0b4b9[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Thu Oct 10 00:11:52 2024 -0300
+
+    Find Products Screen
+
+[33mcommit 3ef5a073b8fd0c560bdac57b0968bcee5a3c0c73[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Wed Oct 9 16:55:04 2024 -0300
+
+    Correcion de Detalles
+
+[33mcommit de59a6e8e90f1c3977dae49689e47099b257ce65[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Wed Oct 9 16:37:34 2024 -0300
+
+    ViewModel HomeScreen
+
+[33mcommit e6416b83d90504d861dd943e19ffe7817b3811fe[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Wed Oct 9 13:08:53 2024 -0300
+
+    Home Screen Componentes
+
+[33mcommit 5052f75a7450c44e58e5dda0085c8046988f2f71[m
+Author: ChiaraVallone04 <chiara.vallone04@gmail.com>
+Date:   Wed Oct 9 00:49:08 2024 -0300
+
+    Banner Home Screen
+
+[33mcommit 06b0a379865adefd88c92dd80325baa1ac99d5a0[m
+Merge: a5c862a 1e34dff
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Tue Oct 8 21:36:10 2024 -0300
+
+    Merge pull request #2 from GA-L1L30/features/estructura_del_sistema
+    
+    falta terminar estructura, solo definidas, composables y  screens
+
+[33mcommit 1e34dfff58face4597afb01e54f070db5d73f97f[m[33m ([m[1;31morigin/features/estructura_del_sistema[m[33m, [m[1;32mfeatures/estructura_del_sistema[m[33m)[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 8 21:35:13 2024 -0300
+
+    falta terminar estructura, solo definidas, composables y  screens
+
+[33mcommit a5c862a827b60cb2b5a13efad335df3a481fdb91[m
+Merge: d0135bc 8dd96b8
+Author: IgnacioDuran <64621331+GA-L1L30@users.noreply.github.com>
+Date:   Tue Oct 8 20:57:46 2024 -0300
+
+    Merge pull request #1 from GA-L1L30/develop
+    
+    Rama principal de datos
+
+[33mcommit 8dd96b8717997bea405f31dbeadc87ea1a299c5f[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 8 20:57:10 2024 -0300
+
+    Rama principal de datos
+
+[33mcommit d0135bc5645285f24eccb9c215e482c592d0169a[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 8 20:47:09 2024 -0300
+
+    First Commit
+
+[33mcommit 7d949741372cc789fb96fd42fc1832aae6e07206[m
+Author: GA-L1L3O <ignacioduran61@gmail.com>
+Date:   Tue Oct 8 20:46:19 2024 -0300
+
+    First Commit

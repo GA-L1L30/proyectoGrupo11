@@ -24,23 +24,36 @@ import com.example.appgrupo11.composables.CustomCard
 import com.example.appgrupo11.composables.CustomTopBar
 
 @Composable
-fun CategoryScreen(navController: NavController){
-    val categoryViewModel : CategoryViewModel = viewModel()
+fun CategoryScreen(
+    navController: NavController,
+    isDarkMode: Boolean,        // Agregar parámetro isDarkMode
+    onToggleDarkMode: (Boolean) -> Unit // Agregar parámetro onToggleDarkMode
+) {
+    val categoryViewModel: CategoryViewModel = viewModel()
 
-    Scaffold(topBar = {
-        CustomTopBar(title = "Beverages", navigationIcon = { Icon(
-        Icons.AutoMirrored.Outlined.ArrowBack,
-        contentDescription = null,
-        modifier = Modifier.size(20.dp),
-    ) },
-        navController = navController
-    )
-    }
+    Scaffold(
+        topBar = {
+            CustomTopBar(
+                title = "Beverages",
+                navigationIcon = {
+                    Icon(
+                        Icons.AutoMirrored.Outlined.ArrowBack,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp)
+                    )
+                },
+                navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
+            )
+        }
     ) { innerPadding ->
-        Column(modifier = Modifier
-            .padding(innerPadding)
-            .background(Color.White)
-            .fillMaxSize(),) {
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .background(if(isDarkMode) Color.Black else Color.White)
+                .fillMaxSize()
+        ) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 modifier = Modifier
@@ -50,14 +63,14 @@ fun CategoryScreen(navController: NavController){
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(categoryViewModel.products){
-                        product ->
+                items(categoryViewModel.products) { product ->
                     CustomCard(
-                        imageRes = product.imageRes,
+                        imageUrl = product.imageUrl,
                         title = product.title,
                         description = product.description,
                         price = product.price,
-                        navController = navController
+                        navController = navController,
+                        isDarkMode = isDarkMode
                     )
                 }
             }

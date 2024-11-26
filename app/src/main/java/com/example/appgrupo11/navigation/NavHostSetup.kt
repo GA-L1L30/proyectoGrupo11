@@ -1,21 +1,15 @@
-package com.example.appgrupo11.Navigation
+package com.example.appgrupo11.navigation
 
 import LocationScreen
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.appgrupo11.composables.CustomNavigationBar
-import com.example.appgrupo11.composables.CustomTopBar
-import com.example.appgrupo11.data.getNavigationList
+
 import com.example.appgrupo11.screens.*
 import com.example.appgrupo11.screens.cart.CartScreen
 import com.example.appgrupo11.screens.favorites.FavoritesScreen
@@ -31,18 +25,19 @@ fun NavHostSetup(
     hasSeenOnboarding: Boolean,
     onLoginSuccess: () -> Unit,
     onOnboardingComplete: () -> Unit,
-    onNavigationItemSelected: (Int) -> Unit // Añadir este parámetro para manejar la selección
+    onNavigationItemSelected: (Int) -> Unit,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
 ) {
-    val navController = rememberNavController() // Controlador de navegación
+    val navController = rememberNavController()
 
-    // Controla la navegación inicial según el estado
     LaunchedEffect(Unit) {
         if (!hasSeenOnboarding) {
-            navController.navigate("onboarding") // Si no ha visto la pantalla de onboarding
+            navController.navigate("onboarding")
         } else if (!isUserLoggedIn) {
-            navController.navigate("signin") // Si no está autenticado
+            navController.navigate("signin")
         } else {
-            navController.navigate("home") // Pantalla principal
+            navController.navigate("home")
         }
     }
 
@@ -58,7 +53,7 @@ fun NavHostSetup(
                 onLoginSuccess = {
                     onLoginSuccess()
                     navController.navigate("home") {
-                        popUpTo("signin") { inclusive = true } // Remover SignIn de la pila de navegación
+                        popUpTo("signin") { inclusive = true }
                     }
                 },
                 onNavigateToSignUp = {
@@ -70,7 +65,7 @@ fun NavHostSetup(
             SignUpScreen(
                 onSignUpSuccess = {
                     navController.navigate("location") {
-                        popUpTo("signup") { inclusive = true } // Remover SignUp de la pila de navegación
+                        popUpTo("signup") { inclusive = true }
                     }
                 },
                 onNavigateToSignIn = {
@@ -83,9 +78,11 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    HomeScreen(navController = navController)
+                    HomeScreen(navController = navController, isDarkMode = isDarkMode)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("findProducts") {
@@ -96,6 +93,8 @@ fun NavHostSetup(
                     FindProductsScreen(navController = navController)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("cart") {
@@ -103,9 +102,11 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    CartScreen(navController = navController)
+                    CartScreen(navController = navController, isDarkMode)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("favorites") {
@@ -113,49 +114,67 @@ fun NavHostSetup(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    FavoritesScreen(navController = navController)
+                    FavoritesScreen(navController = navController, isDarkMode)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
-
         }
         composable("account") {
             LayoutScreen(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    AccountScreen()
+                    AccountScreen(
+                        isDarkMode = isDarkMode,
+                        onToggleDarkMode = onToggleDarkMode
+                    )
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
         }
         composable("productDetail") {
-            ProductDetailScreen(navController = navController)
+            ProductDetailScreen(
+                navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
         composable("orderAccepted") {
-            OfferAcceptedScreen(navController = navController)
+            OfferAcceptedScreen(
+                navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
         composable("productsFiltered") {
             LayoutScreen(
                 selectedNavigationItemIndex = selectedNavigationItemIndex,
                 onNavigationItemSelected = onNavigationItemSelected,
                 childrenComposable = {
-                    SearchScreen(navController = navController)
+                    SearchScreen(navController = navController, isDarkMode = isDarkMode)
                 },
                 navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
             )
-
         }
         composable("productsForCategory") {
-            CategoryScreen(navController = navController)
+            CategoryScreen(
+                navController = navController,
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
         composable("location") {
             LocationScreen(
-                onNavigateToHome ={
+                onNavigateToHome = {
                     navController.navigate("home")
                 }
             )
         }
     }
 }
-

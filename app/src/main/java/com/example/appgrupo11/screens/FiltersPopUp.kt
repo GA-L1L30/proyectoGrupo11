@@ -38,7 +38,10 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiltersPopUp(onDismiss: () -> Unit, navController: NavController) {
+fun FiltersPopUp(
+    onDismiss: () -> Unit,
+    navController: NavController,
+ ) {
     val titles = listOf("Eggs", "Noodles & Pasta", "Chips & Crips", "Fast Food")
     val titles2 = listOf("Individual Callection", "CocaCola", "Ifad", "Kazi Farmas")
 
@@ -113,7 +116,12 @@ fun FiltersPopUp(onDismiss: () -> Unit, navController: NavController) {
                 }
             },
             confirmButton = {
-                PrimaryButton(text = "Apply Now", onClick = {navController.navigate("productsFiltered")})
+                PrimaryButton(
+                    text = "Apply Now",
+                    onClick = {
+                        navController.navigate("productsFiltered")
+
+                    })
             }
     )
 }

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.room.util.query
 import com.example.appgrupo11.composables.Search
 
 
@@ -43,6 +44,7 @@ import com.example.appgrupo11.composables.Search
 fun FindProductsScreen(navController: NavController){
     val viewModel: FindProductosViewModel = viewModel()
     var showFiltersPopup by remember { mutableStateOf(false) }
+    var searchQuery by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -55,11 +57,18 @@ fun FindProductsScreen(navController: NavController){
         if(viewModel.loading.value) {
             CircularProgressIndicator()
         }else{
-            Search("Search Store"){
-                showFiltersPopup = true
-            }
+            Search(
+                query = searchQuery,
+                onQueryChange = {newQuery -> searchQuery = newQuery},
+                placeholderText = "Search Store",
+                onTrailingIconClick = { showFiltersPopup = true }
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
+
+            val filteredCategories = viewModel.allCategories.value.filter{
+                it.title.contains(searchQuery, ignoreCase = true)
+            }
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
@@ -68,7 +77,7 @@ fun FindProductsScreen(navController: NavController){
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(viewModel.allCategories.value){
+                items(filteredCategories){
                         category ->
                     CategoryCard(
                         imageRes = category.imageRes,

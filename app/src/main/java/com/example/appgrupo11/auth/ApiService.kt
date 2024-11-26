@@ -1,4 +1,4 @@
-package com.example.appgrupo11.Auth
+package com.example.appgrupo11.auth
 
 import retrofit2.Call
 import retrofit2.http.Body

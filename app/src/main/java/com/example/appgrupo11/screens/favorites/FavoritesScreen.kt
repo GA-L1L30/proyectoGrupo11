@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,22 +26,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForwardIos
 import androidx.compose.material3.Icon
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import com.example.appgrupo11.composables.ErrorDialog
 
 @Composable
-fun FavoritesScreen(navController: NavController) {
+fun FavoritesScreen(navController: NavController, isDarkMode: Boolean) {
     var showDialog by remember { mutableStateOf(false) }
     val favoritesViewModel: FavoritesViewModel = viewModel()
-    // Obtener la lista de productos desde el viewmodel
-    val products = favoritesViewModel.favoritesItems
+    val products by favoritesViewModel.favoritesItems.collectAsState(initial = emptyList())
 
-
-    //Estructura de la pantalla
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -57,11 +55,11 @@ fun FavoritesScreen(navController: NavController) {
 
 
         }
-        //Boton para ir a checkout
+
         PrimaryButton("Add All To Cart", onClick = { showDialog = true }
         )
         if(showDialog) {
-            ErrorDialog(onDismiss = { showDialog = false }, navController = navController)
+            ErrorDialog(onDismiss = { showDialog = false }, navController = navController, isDarkMode = isDarkMode)
         }
 
     }
@@ -78,7 +76,7 @@ fun ProductItem(product: Product) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = product.imageRes),
+            painter = rememberAsyncImagePainter(product.imageUrl),
             contentDescription = product.title,
             modifier = Modifier.size(64.dp),
             contentScale = ContentScale.Fit
@@ -105,8 +103,6 @@ fun ProductItem(product: Product) {
             imageVector = Icons.AutoMirrored.Outlined.ArrowForwardIos,
             contentDescription = "Expand",
             modifier = Modifier.size(24.dp)
-
-
         )
     }
 }
